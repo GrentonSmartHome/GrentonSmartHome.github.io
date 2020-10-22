@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/assets/css/style.css?v=ab2893b45baad7cf791d5d9b565bdb4261034ae2">
+    <link rel="stylesheet" type="text/css" href="/assets/css/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>CLUZ 1.0 Firmware | Grenton Downloads</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="CLUZ 1.0 Firmware" />
+<meta property="og:locale" content="pl" />
+<meta name="description" content="Pobierz oprogramowanie i sprawdź historię zmian" />
+<meta property="og:description" content="Pobierz oprogramowanie i sprawdź historię zmian" />
+<meta property="og:site_name" content="Grenton Downloads" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"/pl/cluz10.html","description":"Pobierz oprogramowanie i sprawdź historię zmian","headline":"CLUZ 1.0 Firmware","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>CLUZ 1.0 Firmware</h1>
+          <h2>Pobierz oprogramowanie i sprawdź
+historię zmian
+</h2>
+          
+            
+              <a href="./"><span>< Wróć do poprzedniej strony</span></a>
+            
+          
+        </header>
+        <section id="downloads" class="clearfix">
+          
+	
+        </section>
+        <hr>
+        <section id="main_content">
+          <h2 id="aktualizacja-firmware">Aktualizacja Firmware</h2>
+
+<p><em>Aktualna Wersja: 4.07.49 (build 1912)</em></p>
+
+<ul>
+  <li>Firmware dostępny do aktualizacji za pomocą aplikacji <a href="./om.html">Object Manager</a>.</li>
+</ul>
+
+<p><a href="./cluz10_installation">Proces aktualizacji i uruchomienie</a></p>
+
+<hr />
+
+<h2 id="historia-zmian">Historia Zmian</h2>
+
+<h3 id="v40749-build-1912">v4.07.49 (build 1912)</h3>
+
+<p><em>17 Kwiecień 2019</em></p>
+
+<ul>
+  <li>
+    <p>Obsługa nowych funkcjonalności modułu Grenton Smart Panel (v04.03.04) – obsługa zwierająca między innymi:</p>
+
+    <ul>
+      <li>Nowy obiekt PANEL_PAGE (nowy sposób konfiguracji stron panelu), wsparcie dla termostatu,</li>
+      <li>Możliwość scalania wielu przycisków w jeden większy,</li>
+      <li>Konfiguracja gestów (rozpoznawanie w wybranych płaszczyznach, zmiana czułości).</li>
+    </ul>
+  </li>
+  <li>
+    <p>Obsługa nowych modułów Z-Wave – umożliwia współpracę z poniższymi modułami Z-Wave w podanym zakresie:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Moduł</th>
+          <th>Zakres obsługi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Danfoss Living Connect <br />(EU HW: 00 FW:1.1)</td>
+          <td>- Ustawienie temperatury zadanej na głowicy <br />- Załączenie / wyłączenie blokady przycisków <br />- Odczyt poziomu naładowania baterii <br />- Możliwość ustawienia / odczytu czasu wybudzenia modułu</td>
+        </tr>
+        <tr>
+          <td>POPP Z-Weather <br />(EU HW: 01 FW: 1.0)</td>
+          <td>- Odczyt parametrów klimatycznych stacji pogodowej (temperatura, luminacja, wilgotność, prędkość wiatru, ciśnienie, punkt rosy)<br />- Odczyt poziomu naładowania baterii<br />- Możliwość ustawienia / odczytu czasu wybudzenia modułu</td>
+        </tr>
+        <tr>
+          <td>Infibity Siren Alarm <br />(NAS-AB01Z HW:48 FW: 2.90)</td>
+          <td>- Załączenie / wyłączenie syreny<br />- Odczyt poziomu baterii<br />- Możliwość ustawienia / odczytu czasu wybudzenia modułu<br />- Możliwość zmiany parametrów konfiguracyjnych</td>
+        </tr>
+        <tr>
+          <td>Heiman Smart Smoke Sensor <br />(HS1SA-Z HW: 255 FW: 1.10)</td>
+          <td>- Odczyt stanu czujnika dymu<br />- Odczyt poziomu naładowania baterii<br />- Możliwość ustawienia / odczytu czasu wybudzenia modułu</td>
+        </tr>
+        <tr>
+          <td>Remotec ZXT-120 <br />(ZXT-120EU V1.0)</td>
+          <td>- Obsługa nauki oraz wysyłania kodu IR<br />- Definiowanie parametrów transmisji<br />- Odczyt stanu uczenia kodu (LearningStatus)<br />- Odczyt poziomu naładowania baterii<br />- Możliwość ustawienia / odczytu czasu wybudzenia modułu</td>
+        </tr>
+        <tr>
+          <td>Remotec ZXT-310 / Infibity INF-005-Z-01 - IR Extender ZXT-310 <br />(ZXT-310EU HW: 00 FW: 1.10)</td>
+          <td>- Obsługa nauki oraz wysyłania kodu IR<br />- Definiowanie parametrów transmisji<br />- Odczyt stanu uczenia kodu (LearningStatus)<br />- Odczyt poziomu naładowania baterii<br />- Możliwość ustawienia / odczytu czasu wybudzenia modułu</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Zmiana głównego obiektu ZWAVE_ROLLER_SHUTTER na dedykowany obiekt ZWAVE_FAKRO.</li>
+  <li>Dodanie obiektu konfiguracyjnego – ZWAVE_CONFIG.</li>
+  <li>Nowa cecha Percent oraz metoda SetPercentage – możliwość odczytu / ustawienia wartości procentowej otwarcia zamknięcia okna.</li>
+  <li>Dodanie obsługi czujnika deszczu (WaterSensor) dla modułu Fakro FTP V.</li>
+  <li>Nowe cechy dla modułu Fakro AMZ Solar – Mode, SeasonMode, OpeningTime oraz Sensitivity.</li>
+  <li>Nowe metody dla modułu Fakro AMZ Solar – SetMode, SetSeasonMode, SetOpeningTime oraz SetSensitivity.</li>
+  <li>Dodanie możliwości odczytu / ustawienia parametrów konfiguracyjnych dla modułów Fakro FTP V oraz Fakro AMZ Solar.</li>
+  <li>Optymalizacja protokołu komunikacyjnego między urządzeniami Grenton w zakresie identyfikacji urządzeń.</li>
+  <li>Nowe zdarzenia oraz metody dla modułu Spirit Z-Wave:
+    <ul>
+      <li>OnUserAction – nowe zdarzenie w obiekcie ZWAVE_THERMOSTAT modułu Spirit Z-Wave. Zdarzenie wywoływane w momencie zmiany ustawionej temperatury na głowicy za pomocą przycisków „- “, „+” (znajdujących się na module).</li>
+      <li>GetData – nowa metoda w obiekcie ZWAVE_THERMOSTAT modułu Spirit Z-Wave. Wywołanie metody powoduje odczytanie wartości temperatury ustawionej na głowicy (przez ustawienie za pomocą przycisków „- “, „+” znajdujących się na module) i przypisanie jej do cechy PointValue.</li>
+    </ul>
+  </li>
+  <li>Naprawione błędy:
+    <ul>
+      <li>Spirit Z-Wave - brak odczytu temperatury z głowicy w momencie jej wybudzenia</li>
+      <li>Spirit Z-Wave - problem z ustawieniem temperatury (SetPointValue) na głowicy</li>
+      <li>Obiekt ZWAVE_ANALOG_SENSOR - brak wywołania zdarzeń po pierwszym wybudzeniu modułu Z-Wave zasilanego bateryjnie</li>
+      <li>Wywoływanie zdarzenia OnWakeUp dla zbanowanych modułów Z-Wave zasilanych bateryjnie</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="v40742-build-1848">v4.07.42 (build 1848)</h3>
+
+<p><em>30 Listopad 2018</em></p>
+
+<ul>
+  <li>Obsługa nowych modułów Grenton – umożliwia poprawne obsłużenie nowych wersji paneli dotykowych</li>
+  <li>Nowy obiekty w obrębie paneli dotykowych: AnalogIN (pomiar napięcia) oraz Panel (możliwość włączenia / wyłączenia buzzera)</li>
+</ul>
+
+<h3 id="v40741-build-183201">v4.07.41 (build 183201)</h3>
+
+<p><em>24 Sierpień 2018</em></p>
+
+<ul>
+  <li>
+    <p>Obsługa nowych modułów Z-Wave – umożliwia poprawne obsłużenie poniższych modułów Z-Wave w podanym zakresie:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Moduł</th>
+          <th>Zakres obsługi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Okno Fakro FTP-V ZWave</td>
+          <td>- Otwieranie oraz zamykanie okna</td>
+        </tr>
+        <tr>
+          <td>Roleta Fakro ARF</td>
+          <td>- Otwieranie oraz zamykanie rolety</td>
+        </tr>
+        <tr>
+          <td>Markiza Fakro AMZ ZWave Solar</td>
+          <td>- Otwieranie, zamykanie markizy,<br />- Odczyt poziomu naładowania baterii</td>
+        </tr>
+        <tr>
+          <td>Kontroler Fakro ZWP10</td>
+          <td>- Podstawowa obsługa przycisków „w górę”, „w dół” oraz „stop”<br /><br /><em>Uwaga!</em><br /><em>Przyciski po lewej stronie pilota działają identycznie jak przyciski po prawej</em></td>
+        </tr>
+        <tr>
+          <td>Infibity (NEO) Door / Window Sensor <br />(NAS-DS01Z HW: 65 FW: 3.61) <br />(NAS-DS01Z Product Version: 41)</td>
+          <td>- Odczyt stanu kontaktronu (NC)<br />- Odczyt poziomu baterii<br />- Możliwość ustawienia / odczytu czasu wybudzenia modułu</td>
+        </tr>
+        <tr>
+          <td>Infibity (NEO) PIR Motion Sensor <br />(NAS-PD01ZE HW: 66 FW: 3.80)</td>
+          <td>- Odczyt stanu czujnika ruchu (PIR)<br />- Odczyt poziomu oświetlenia<br />- Odczyt temperatury<br />- Odczyt poziomu baterii<br />- Możliwość ustawienia / odczytu czasu wybudzenia modułu<br />- Możliwość zmiany parametrów konfiguracyjnych</td>
+        </tr>
+        <tr>
+          <td>Infibity (NEO) Water Sensor <br />(NAS-WS02ZU HW: 32 FW: 2.133)</td>
+          <td>- Odczyt stanu czujnika zalania<br />- Odczyt poziomu baterii<br />- Możliwość ustawienia/odczytu czasu wybudzenia modułu<br />- Możliwość zmiany parametrów konfiguracyjnych</td>
+        </tr>
+        <tr>
+          <td>Fibaro UBS <br />(FGBS-001 v 2.1)</td>
+          <td>- Wejścia bezpotencjałowe (IN1, IN2)<br />- Odczyt wartości z czujników OneWire (do 4 czujników 1_W)<br />- Możliwość zmiany parametrów konfiguracyjnych (interfejs konfiguracyjny Fibaro)</td>
+        </tr>
+        <tr>
+          <td>Fibaro RGBW <br />(FGRGBWM-441 v2/5 EU )</td>
+          <td>- Odczyt / ustawianie stanu pojedynczych kanałów wyjściowych R, G, B, W (w zakresie 0-255)<br />- Możliwość zmiany parametrów konfiguracyjnych (interfejs konfiguracyjny Fibaro)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Nowy obiekt dla modułów Z-Wave – ZWAVE_CONFIG obiekt wyświetlający informacje odnośnie parametrów oraz komunikacji z modułem w sieci Z-Wave. Umożliwia również ustawienie zaawansowanych parametrów konfiguracyjnych danego modułu (określone indywidualnie w instrukcji producenta modułu).</li>
+  <li>Zmiana sposobów zarządzania modułami w sieci Z-Wave w przypadku nieudanej komunikacji z danym urządzeniem.
+    <ol>
+      <li>W przypadku niepowodzenia komunikacji z modułem (brak odpowiedzi, potwierdzenia itp.) następuje inkrementacja cechy FailCount o 1</li>
+      <li>Próba komunikacji ponawiania jest trzykrotnie (w interwałach 10s).</li>
+      <li>W przypadku 3 nieudanych prób w komunikacji z modułem zostaje zablokowana jakakolwiek transmisja do tego modułu (Banned =1).</li>
+      <li>Do modułu zbanowanego, co 1 minutę wysyłane jest zapytanie komunikacyjne – podjęcie próby odzyskania połączenia z modułem.</li>
+      <li>Jeśli CLU odzyska połączenie (moduł odpowie), wówczas moduł zostaje odblokowany (usunięty ban, Banned = 0) i następuje powrót do normalnej pracy modułu.</li>
+    </ol>
+  </li>
+  <li>Zaktualizowana obsługa Fibaro RGBW (FGRGBWM-441 v2/5 EU)
+    <ul>
+      <li>Dodanie możliwości odczytu stanu pojedynczych kanałów wyjściowych R, G, B, W (w zakresie 0-255) – w przypadku zmiany po stronie użytkownika (np. za pomocą przycisku podłączonych do wejść)</li>
+      <li>Możliwość zmiany parametrów konfiguracyjnych (interfejs konfiguracyjny Fibaro) – obiekt ZWAVE_CONFIG</li>
+    </ul>
+  </li>
+</ul>
+
+        </section>
+
+        
+    
+    
+    
+    <footer class="lang-options">
+        <em>Wybierz swój język:</em>
+        <ul>
+        
+        <li><a href="/en/cluz10.html" class="en title="View in en">🇺🇸 English</a></li>
+        
+        <li><a href="/pl/cluz10.html" class="pl title="View in pl">🇵🇱 Polski</a></li>
+        
+        </ul>
+    
+
+
+
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>
