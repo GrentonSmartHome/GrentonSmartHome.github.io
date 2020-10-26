@@ -3,7 +3,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/assets/css/style.css?v=e33025a8fc260900e53010cc1af50e7ad903d105">
+    <link rel="stylesheet" href="/assets/css/style.css?v=38daafa9f6aa21c3e7933b7e8b208e4ca638763e">
     <link rel="stylesheet" type="text/css" href="/assets/css/print.css" media="print">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -46,7 +46,7 @@ historię zmian
         <section id="main_content">
           <h2 id="aktualizacja-firmware">Aktualizacja Firmware</h2>
 
-<p><em>Aktualna Wersja: 5.05.05 (build 2014)</em></p>
+<p><em>Aktualna Wersja: 5.06.03 (build 2042)</em></p>
 
 <ul>
   <li>Firmware dostępny do aktualizacji za pomocą aplikacji <a href="./om.html">Object Manager</a>.</li>
@@ -57,6 +57,53 @@ historię zmian
 <hr />
 
 <h2 id="historia-zmian">Historia Zmian</h2>
+
+<h3 id="v50603-build-2042">v5.06.03 (build 2042)</h3>
+
+<p><em>26 Październik 2020</em></p>
+
+<ul>
+  <li>
+    <p>Obsługa nowych modułów Z-Wave – umożliwia współpracę z poniższymi modułami Z-Wave w podanym zakresie:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Moduł</th>
+          <th>Zakres obsługi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Aeotec Nano Shutter <br /></td>
+          <td>- Otwieranie oraz zamykanie rolety <br /> - Obiekt konfiguracyjny</td>
+        </tr>
+        <tr>
+          <td>Aeotec Nano Dimmer <br /></td>
+          <td>- Obsługa wyjścia ściemniacza w zakresie 0-1 wraz z czasem ściemniania<br /> - Obsługa wejścia cyfrowego DIN <br /> - Obiekt konfiguracyjny</td>
+        </tr>
+        <tr>
+          <td>Aeotec Nano Switch <br /></td>
+          <td>- Obsługa wyjścia cyfrowego OUT <br /> - Obiekt konfiguracyjny</td>
+        </tr>
+        <tr>
+          <td>Aeotec Nano Dual Switch <br /></td>
+          <td>- Obsługa wyjścia cyfrowego OUT1 oraz OUT2 <br /> - Obiekt konfiguracyjny</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Nowa cecha CLU - QoS - Ustawiająca poziom jakości usług sieciowych.</li>
+  <li>Obsługa zapytań o cechy użytkownika z aplikacji mobilnej.</li>
+  <li>Zmiany zwiększające stabilność komunikacji z aplikacją mobilną i OM.</li>
+  <li>Dodanie domyślnego tytułu powiadomienia PUSH o treści “Grenton notifica,tion”.</li>
+  <li>Poprawa działania mechanizmu Discovery dla modułów 1.0.</li>
+  <li>Poprawa działania mechanizmu updatera modułów TFBus.</li>
+  <li>Poprawa działania mechanizmu powiadomień PUSH.</li>
+  <li>Poprawa ustawień stref czasowych.</li>
+</ul>
+
+<p><strong>Uwaga!!</strong> <em>Aby korzystać z wydania v5.06.03, należy posiadać Object Manager v1.3.5 (lub wyższy)</em></p>
 
 <h3 id="v50505-build-2014">v5.05.05 (build 2014)</h3>
 
@@ -91,7 +138,7 @@ historię zmian
   <li>Wsparcie dla nowej wersji czujnika Heimann Smoke Sensor.</li>
   <li>Ustawianie statusu na podstawieni raportu urządzenia Roller Shutter.</li>
   <li>Pobieranie hardware’u urządzeń TFbus.</li>
-  <li>Poprawienie stabilności działania systemu oraz poprawa błędów</li>
+  <li>Poprawienie stabilności działania systemu oraz poprawa błędów.</li>
 </ul>
 
 <h3 id="v50414-build-2009">v5.04.14 (build 2009)</h3>

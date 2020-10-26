@@ -3,7 +3,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/assets/css/style.css?v=e33025a8fc260900e53010cc1af50e7ad903d105">
+    <link rel="stylesheet" href="/assets/css/style.css?v=38daafa9f6aa21c3e7933b7e8b208e4ca638763e">
     <link rel="stylesheet" type="text/css" href="/assets/css/print.css" media="print">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -47,12 +47,12 @@ in the releases
         <section id="main_content">
           <h2 id="download">Download</h2>
 
-<p><em>Version: 1.3.3 (build 2014)</em></p>
+<p><em>Version: 1.3.5 (build 204201)</em></p>
 
 <ul>
-  <li><a href="https://www.grenton.pl/download/files/Software/Grenton_Object_Manager_1_3_3_2014_win32.x86.exe">Windows</a></li>
-  <li><a href="https://www.grenton.pl/download/files/Software/Grenton_Object_Manager_1_3_3_2014_macosx.cocoa.x86_64.dmg">macOS</a></li>
-  <li><a href="https://www.grenton.pl/download/files/Software/Grenton_Object_Manager_1_3_3_2014_linux.gtk.x86_64.tar.gz">Linux - GTK</a></li>
+  <li><a href="https://storage.grenton.com/download/om//1.3.5-204201/object-manager-1.3.5-204201-win32.win32.x86.exe">Windows</a></li>
+  <li><a href="https://storage.grenton.com/download/om//1.3.5-204201/object-manager-1.3.5-204201-macosx.cocoa.x86_64.dmg">macOS</a></li>
+  <li><a href="https://storage.grenton.com/download/om//1.3.5-204201/object-manager-1.3.5-204201-linux.gtk.x86_64.tar.gz">Linux - GTK</a></li>
 </ul>
 
 <p><a href="./om_installation">Installation and start-up process</a>
@@ -61,6 +61,86 @@ in the releases
 <hr />
 
 <h2 id="changelog">Changelog</h2>
+
+<h3 id="v135-build-204201">v1.3.5 (build 204201)</h3>
+
+<p><em>26 October 2020</em></p>
+
+<ul>
+  <li>myGrenton - New widget - Camera (maximum URL length is 2048 characters). The condition for the proper operation of the widget is to use the video stream with the RTSP protocol and the MJPG codec. Supported camera models:
+    <ul>
+      <li>Dahua IP CAMERA Model: IPC-HFW2531S-S-0280B-S2</li>
+      <li>Hikvision NETWORK CAMERA Model: DS-2CD1043G0-I</li>
+      <li>Camera with video stream with the RTSP protocol and the MJPG codec. <strong>Note!</strong> In this case, you should perform your own tests of correct operation and compatibility of the camera with the myGrenton application.</li>
+    </ul>
+  </li>
+  <li>New icons for the myGrenton interface:
+    <ul>
+      <li>Stairs.</li>
+      <li>Curtains.</li>
+      <li>Curtain rods.</li>
+      <li>Shutters.</li>
+      <li>Wall lamp.</li>
+      <li>Led tape.</li>
+      <li>Marquise.</li>
+      <li>Pump.</li>
+      <li>Valve.</li>
+      <li>Floor heating.</li>
+      <li>Gas boiler.</li>
+      <li>Roller blind.</li>
+      <li>Watering the garden.</li>
+      <li>Power socket.</li>
+      <li>Motion detector.</li>
+      <li>Kitchen.</li>
+      <li>Plafond.</li>
+      <li>Ground floor.</li>
+      <li>Floor.</li>
+      <li>Attic.</li>
+      <li>Fireplace.</li>
+      <li>Party scene.</li>
+      <li>TV viewing scene.</li>
+      <li>Wake up scene.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Added forcing firmware update for devices connected to TF-Bus but not found during ‘CLU Discovery’. This option is available in the context menu for CLU in the firmware update view.</p>
+  </li>
+  <li>
+    <p>Added canceling the module firmware update if the CLU update fails.</p>
+  </li>
+  <li>
+    <p>Added warning after firmware update if any module has BOOT status.</p>
+  </li>
+  <li>
+    <p>New save for om.log files - saving in the * / logs * folder.</p>
+  </li>
+  <li>
+    <p>Changing the way of setting the network interface in the Object Manager - setting for the entire application.</p>
+  </li>
+  <li>
+    <p>Changing the way of displaying supported XML interfaces - removing the list of supported CLUs.</p>
+  </li>
+  <li>
+    <p>Support in downloading configuration for devices with SN&gt; 10 characters.</p>
+  </li>
+  <li>
+    <p>Improved the firmware update process in case of changing the configuration of network interfaces in the system.</p>
+  </li>
+  <li>
+    <p>Changed location of button for adding script parameters.</p>
+  </li>
+  <li>
+    <p>Fixed problem for downloading configuration of two CLU’s having configuration sent from OM version 195001 or lower.</p>
+  </li>
+  <li>
+    <p>Linux - Fixed an error related to setting the IP address when sending the myGrenton interface.</p>
+  </li>
+  <li>
+    <p>Fixed closing of the CLU configuration sending window with “Esc” key.</p>
+  </li>
+  <li>Fixed the content of some messages.
+<br /></li>
+</ul>
 
 <h3 id="v133-build-2014">v1.3.3 (build 2014)</h3>
 
@@ -75,7 +155,8 @@ in the releases
   <li>Firmware update view - Display of available FW for updating after changing the
 repository.</li>
   <li>Firmware update view - Incorrect graying out of the ‘Selection’ checkboxes after changing
-the repository.</li>
+the repository.
+<br /></li>
 </ul>
 
 <h3 id="v132-build-195001">v1.3.2 (build 195001)</h3>
@@ -93,7 +174,8 @@ the repository.</li>
   <li>No creation of device objects after Discovery, if these objects were previously added to
 the container and removed.
 Corrected problem with triggering the “Send to mobile device action” - infinite progress
-bar</li>
+bar
+<br /></li>
 </ul>
 
 <h3 id="v131-build-1945">v1.3.1 (build 1945)</h3>
@@ -115,7 +197,8 @@ bar</li>
   <li>Added the Object Manager version in the title of the main window.</li>
   <li>Object Manager’s version added to the title of the main window.</li>
   <li>Update process - more of information in the logs about the completion of the update.</li>
-  <li>Several improvements of the application stability.</li>
+  <li>Several improvements of the application stability.
+<br /></li>
 </ul>
 
 <h3 id="v130-build-1927">v1.3.0 (build 1927)</h3>
@@ -137,7 +220,8 @@ bar</li>
   <li>Assigning the gateway address for the next ”CLU Discovery” in a given project.</li>
   <li>Incorrect display of the values of CLU variables from the Object Manager level when a large number of variables is used.</li>
   <li>Transcribing a new CLU to an inactive one that is on a different subnet.</li>
-  <li>Graphic appearance of the application – improvements in the appearance of the windows.</li>
+  <li>Graphic appearance of the application – improvements in the appearance of the windows.
+<br /></li>
 </ul>
 
 <h3 id="v121-build-190202">v1.2.1 (build 190202)</h3>
@@ -161,7 +245,8 @@ bar</li>
 feature StatisticState).
 Unable to set user defined resolution.
 The problem of migrating some projects (from previous OM versions) to version 1.2.1 (build
-190201).</li>
+190201).
+<br /></li>
 </ul>
 
 <h3 id="v120-build-180807">v1.2.0 (build 180807)</h3>
@@ -175,7 +260,8 @@ The problem of migrating some projects (from previous OM versions) to version 1.
   <li>Unable to switch between resolutions:
     <ul>
       <li>1200x1920 WUXGA &lt;-&gt; 1920x1200 Samsung Galaxy Tab A 10.1.</li>
-      <li>1600x2560 WQXGA &lt;-&gt; 2560x1600 Lenovo Yoga Tab 3 10, TAB S10.</li>
+      <li>1600x2560 WQXGA &lt;-&gt; 2560x1600 Lenovo Yoga Tab 3 10, TAB S10.
+<br /></li>
     </ul>
   </li>
 </ul>
@@ -189,7 +275,8 @@ The problem of migrating some projects (from previous OM versions) to version 1.
   <li>The interface update procedure has been improved after updating the Z-Wave CLU firmware.</li>
   <li>XML file interfaces database has been updated.</li>
   <li>Incorrect display of interfaces in Visual Builder.</li>
-  <li>Incorrect icon scaling for Home Manager app for iOS devices.</li>
+  <li>Incorrect icon scaling for Home Manager app for iOS devices.
+<br /></li>
 </ul>
 
 <h3 id="v120-build-180202">v1.2.0 (build 180202)</h3>

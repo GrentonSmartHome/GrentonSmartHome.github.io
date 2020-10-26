@@ -3,7 +3,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/assets/css/style.css?v=e33025a8fc260900e53010cc1af50e7ad903d105">
+    <link rel="stylesheet" href="/assets/css/style.css?v=38daafa9f6aa21c3e7933b7e8b208e4ca638763e">
     <link rel="stylesheet" type="text/css" href="/assets/css/print.css" media="print">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -46,12 +46,12 @@ historię zmian
         <section id="main_content">
           <h2 id="pobierz">Pobierz</h2>
 
-<p><em>Wersja: 1.3.3 (build 2014)</em></p>
+<p><em>Wersja: 1.3.5 (build 204201)</em></p>
 
 <ul>
-  <li><a href="https://www.grenton.pl/download/files/Software/Grenton_Object_Manager_1_3_3_2014_win32.x86.exe">Windows</a></li>
-  <li><a href="https://www.grenton.pl/download/files/Software/Grenton_Object_Manager_1_3_3_2014_macosx.cocoa.x86_64.dmg">macOS</a></li>
-  <li><a href="https://www.grenton.pl/download/files/Software/Grenton_Object_Manager_1_3_3_2014_linux.gtk.x86_64.tar.gz">Linux - GTK</a></li>
+  <li><a href="https://storage.grenton.com/download/om//1.3.5-204201/object-manager-1.3.5-204201-win32.win32.x86.exe">Windows</a></li>
+  <li><a href="https://storage.grenton.com/download/om//1.3.5-204201/object-manager-1.3.5-204201-macosx.cocoa.x86_64.dmg">macOS</a></li>
+  <li><a href="https://storage.grenton.com/download/om//1.3.5-204201/object-manager-1.3.5-204201-linux.gtk.x86_64.tar.gz">Linux - GTK</a></li>
 </ul>
 
 <p><a href="./om_installation">Proces instalacji i uruchomienie</a>
@@ -59,6 +59,62 @@ historię zmian
 
 <hr />
 <h2 id="historia-zmian">Historia Zmian</h2>
+
+<h3 id="v135-build-204201">v1.3.5 (build 204201)</h3>
+
+<p><em>26 Październik 2020</em></p>
+
+<ul>
+  <li>myGrenton - Nowy widżet - Kamera (maksymalna długość URL to 2048 znaków). Warunkiem poprawnego działania widżetu jest użycie strumienia video po protokole RTSP oraz nadawanie w kodeku MJPG. Wspierane modele kamer:
+    <ul>
+      <li>Dahua IP CAMERA Model: IPC-HFW2531S-S-0280B-S2,</li>
+      <li>Hikvision NETWORK CAMERA Model: DS-2CD1043G0-I,</li>
+      <li>Kamery posiadające strumień video po protokole RTSP oraz nadawanie w kodeku MJPG. <strong>Uwaga!</strong> W tym przypadku należy  wykonać we własnym zakresie testy poprawności działania i kompatybilności kamery z aplikacją myGrenton.</li>
+    </ul>
+  </li>
+  <li>Nowe  ikony dla interfejsu myGrenton:
+    <ul>
+      <li>Schody.</li>
+      <li>Zasłony.</li>
+      <li>Karnisze.</li>
+      <li>Żaluzje.</li>
+      <li>Kinkiet.</li>
+      <li>Taśma LED.</li>
+      <li>Markiza.</li>
+      <li>Pompa.</li>
+      <li>Zawór.</li>
+      <li>Ogrzewanie podłogowe.</li>
+      <li>Kocioł gazowy.</li>
+      <li>Roleta.</li>
+      <li>Podlewanie ogrodu.</li>
+      <li>Gniazdo zasilające.</li>
+      <li>Czujka ruchu.</li>
+      <li>Kuchnia.</li>
+      <li>Plafon.</li>
+      <li>Parter.</li>
+      <li>Piętro.</li>
+      <li>Strych.</li>
+      <li>Kominek.</li>
+      <li>Scena impreza.</li>
+      <li>Scena oglądanie TV.</li>
+      <li>Scena Pobudka.</li>
+    </ul>
+  </li>
+  <li>Dodano wymuszanie aktualizacji firmware dla urządzeń podłączonych do magistrali TF-Bus, ale nie odnajdowanych podczas „CLU Discovery” . Opcja dostepna w menu konkteksowym dla CLU w widoku aktualizacji firmware.</li>
+  <li>Dodano anulowanie aktualizacji oprogramowania modułu w przypadku niepowodzenia aktualizacji CLU.</li>
+  <li>Dodano ostrzeżenie po aktualizacji oprogramowania, jeśli którykolwiek moduł ma status BOOT.</li>
+  <li>Nowy zapis plików om.log - zapis w folderze <em>/logs</em>.</li>
+  <li>Zmiana sposobu ustawiania interfejsu sieciowego w Object Managerze - ustawianie dla całej aplikacji.</li>
+  <li>Zmiana w sposobie wyświetlania obsługiwanych interfejsów XML - usunięcie listy obsługiwanych CLU.</li>
+  <li>Zmieniono lokalizację przycisku dodawania parametrów skryptu.</li>
+  <li>Wsparcie przy pobieraniu konfiguracji dla urządzeń posiadających SN &gt; 10 znaków.</li>
+  <li>Poprawa procesu aktualizacji firmware przy zmianie konfiguracji interfejsów sieciowych w systemie.</li>
+  <li>Poprawa problemu przy pobieraniu konfiguracji dla dwóch CLU mających konfigurację wysłaną z OM w wersji 195001 lub niższej.</li>
+  <li>Linux - Poprawa błędu związanego z ustawianiem adresu IP podczas wysyłania interfejsu myGrenton.</li>
+  <li>Naprawiono zamykanie okna wysyłania konfiguracji CLU za pomocą klawisza “Esc”.</li>
+  <li>Poprawiono treść niektórych komunikatów.
+<br /></li>
+</ul>
 
 <h3 id="v133-build-2014">v1.3.3 (build 2014)</h3>
 
@@ -71,7 +127,8 @@ historię zmian
   <li>Widok aktualizacji firmware – błędne wyświetlanie okna w przypadku braku połączenia z Internetem.</li>
   <li>Widok aktualizacji firmware – błędne zaznaczenie po zmianie sortowania.</li>
   <li>Widok aktualizacji firmware – błędne wyszarzanie checkbox’ów ‘Wybór’ po zmianie repozytorium.</li>
-  <li>Wyświetlanie dostępnych FW do aktualizacji po zmianie repozytorium.</li>
+  <li>Wyświetlanie dostępnych FW do aktualizacji po zmianie repozytorium.
+<br /></li>
 </ul>
 
 <h3 id="v132-build-195001">v1.3.2 (build 195001)</h3>
@@ -87,7 +144,8 @@ historię zmian
   <li>Dodane ograniczenie długości etykiety widżetu do 30 znaków z poziomu okna właściwości.</li>
   <li>Poprawiony wygląd atrybutu Stan w widżetach myGrenton.</li>
   <li>Brak tworzenia obiektów urządzeń po Discovery, jeżeli wcześniej obiekty te zostały dodane do kontenera i usunięte.</li>
-  <li>Poprawiony problem z wywołaniem akcji “Wyślij na urządzenie mobilne” - nieskończony pasek postępu.</li>
+  <li>Poprawiony problem z wywołaniem akcji “Wyślij na urządzenie mobilne” - nieskończony pasek postępu.
+<br /></li>
 </ul>
 
 <h3 id="v131-build-1945">v1.3.1 (build 1945)</h3>
@@ -108,7 +166,8 @@ historię zmian
   <li>Aktualizacja repozytorium firmware przy wywołaniu „Odśwież” w oknie aktualizacji.</li>
   <li>Dodanie wersji Object Managera w tytule głównego okna.</li>
   <li>Proces aktualizacji - Dodanie informacji w logach o zakończeniu aktualizacji.</li>
-  <li>Poprawki zwiększające stabilność aplikacji.</li>
+  <li>Poprawki zwiększające stabilność aplikacji.
+<br /></li>
 </ul>
 
 <h3 id="v130-build-1927">v1.3.0 (build 1927)</h3>
@@ -131,7 +190,8 @@ historię zmian
   <li>Nadawanie adresu bramy przy kolejnym “CLU Discovery” w danym projekcie.</li>
   <li>Błędne wyświetlanie wartości zmiennych CLU z poziomu Object Manager w przypadku, gdy wykorzystywana jest duża ilość zmiennych.</li>
   <li>Przepisywanie nowego CLU do nieaktywnego, które znajduje się w innej podsieci.</li>
-  <li>Wygląd graficzny aplikacji - poprawki w wyglądzie okien.</li>
+  <li>Wygląd graficzny aplikacji - poprawki w wyglądzie okien.
+<br /></li>
 </ul>
 
 <h3 id="v121-build-190202">v1.2.1 (build 190202)</h3>
@@ -155,7 +215,8 @@ historię zmian
 cecha StatisticState).</li>
   <li>Brak możliwości ustawienia rozdzielczości zdefiniowanej przez użytkownika.
 Problem migracji niektórych projektów (z poprzednich wersji OM) do wersji 1.2.1 (build
-190201).</li>
+190201).
+<br /></li>
 </ul>
 
 <h3 id="v120-build-180807">v1.2.0 (build 180807)</h3>
@@ -169,7 +230,8 @@ Problem migracji niektórych projektów (z poprzednich wersji OM) do wersji 1.2.
   <li>Brak możliwości przejścia pomiędzy rozdzielczościami:
     <ul>
       <li>1200x1920 WUXGA &lt;-&gt; 1920x1200 Samsung Galaxy Tab A 10.1.</li>
-      <li>1600x2560 WQXGA &lt;-&gt; 2560x1600 Lenovo Yoga Tab 3 10, TAB S10.</li>
+      <li>1600x2560 WQXGA &lt;-&gt; 2560x1600 Lenovo Yoga Tab 3 10, TAB S10.
+<br /></li>
     </ul>
   </li>
 </ul>
@@ -183,7 +245,8 @@ Problem migracji niektórych projektów (z poprzednich wersji OM) do wersji 1.2.
   <li>Dokonano udoskonalenia procedury aktualizacji interfejsów po wykonaniu aktualizacji firmware CLU Z-Wave.</li>
   <li>Zaktualizowano bazę interfejsów plików XML.</li>
   <li>Niepoprawne wyświetlanie interfejsów w Visual Builderze.</li>
-  <li>Nieprawidłowe skalowanie ikon dla aplikacji Home Manager na urządzenia iOS.</li>
+  <li>Nieprawidłowe skalowanie ikon dla aplikacji Home Manager na urządzenia iOS.
+<br /></li>
 </ul>
 
 <h3 id="v120-build-180202">v1.2.0 (build 180202)</h3>
