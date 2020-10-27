@@ -3,7 +3,7 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="/assets/css/style.css?v=38daafa9f6aa21c3e7933b7e8b208e4ca638763e">
+    <link rel="stylesheet" href="/assets/css/style.css?v=34016424e7252331e78df45c8a6b9d36d045a20d">
     <link rel="stylesheet" type="text/css" href="/assets/css/print.css" media="print">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -47,7 +47,7 @@ in the releases
         <section id="main_content">
           <h2 id="firmware-update">Firmware Update</h2>
 
-<p><em>Current Version: 5.06.03 (build 2042)</em></p>
+<p><em>Current Version: 5.06.03 (build 2043)</em></p>
 
 <ul>
   <li>Firmware is accessible from the <a href="./om.html">Object Manager</a> tool.</li>
@@ -59,41 +59,42 @@ in the releases
 
 <h2 id="changelog">Changelog</h2>
 
-<h3 id="v50603-build-2042">v5.06.03 (build 2042)</h3>
+<h3 id="v50603-build-2043">v5.06.03 (build 2043)</h3>
 
 <p><em>26 October 2020</em></p>
 
 <ul>
-  <li>
-    <p>Support for new Z-Wave modules - enables cooperation with the following Z-Wave modules in the given range:</p>
+  <li>Support for new Z-Wave modules - enables cooperation with the following Z-Wave modules in the given range:</li>
+</ul>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Module</th>
-          <th>Handling range</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Aeotec Nano Shutter <br /></td>
-          <td>- Shutter opening and closing <br /> - Configuration object</td>
-        </tr>
-        <tr>
-          <td>Aeotec Nano Dimmer <br /></td>
-          <td>- Dimming output with ramp time<br /> - Digital input - IN <br /> - Configuration object</td>
-        </tr>
-        <tr>
-          <td>Aeotec Nano Switch <br /></td>
-          <td>- Digital output - OUT <br /> - Configuration object</td>
-        </tr>
-        <tr>
-          <td>Aeotec Nano Dual Switch <br /></td>
-          <td>- Digital output OUT1 and OUT2 <br /> - Configuration object</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+<table>
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Handling range</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Aeotec Nano Shutter <br /></td>
+      <td>- Shutter opening and closing <br /> - Configuration object</td>
+    </tr>
+    <tr>
+      <td>Aeotec Nano Dimmer <br /></td>
+      <td>- Dimming output with ramp time<br /> - Digital input - IN <br /> - Configuration object</td>
+    </tr>
+    <tr>
+      <td>Aeotec Nano Switch <br /></td>
+      <td>- Digital output - OUT <br /> - Configuration object</td>
+    </tr>
+    <tr>
+      <td>Aeotec Nano Dual Switch <br /></td>
+      <td>- Digital output OUT1 and OUT2 <br /> - Configuration object</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
   <li>New embedded feature for CLU - QoS - Setting the quality level of network services.</li>
   <li>Handling requests for user features from mobile application.</li>
   <li>Increase the stability of communication with mobile application and OM.</li>
@@ -104,7 +105,8 @@ in the releases
   <li>Improving time zone settings.</li>
 </ul>
 
-<p><strong>Note!!</strong> To be able to update CLU to v5.6.3, you must have Object Manager v1.3.5 (or higher)</p>
+<p><strong>Note!!</strong> To be able to update CLU to v5.6.3, you must have Object Manager v1.3.5 (or higher)
+<br /></p>
 
 <h3 id="v50505-build-2014">v5.05.05 (build 2014)</h3>
 
@@ -141,7 +143,8 @@ in the releases
   <li>Support for new Heimann Smokre Sensor module.</li>
   <li>Roller Shutter module: State are set by slave device report.</li>
   <li>Getting Hardware Version from TFBus modules.</li>
-  <li>Stability improvements and bug fixes.</li>
+  <li>Stability improvements and bug fixes.
+<br /></li>
 </ul>
 
 <h3 id="v50414-build-2009">v5.04.14 (build 2009)</h3>
@@ -149,7 +152,8 @@ in the releases
 <p><em>26 February 2020</em></p>
 
 <ul>
-  <li>Cloud connection stability improvements.</li>
+  <li>Cloud connection stability improvements.
+<br /></li>
 </ul>
 
 <h3 id="v50411-build-1949a">v5.04.11 (build 1949A)</h3>
@@ -202,17 +206,23 @@ Due to changes introduced in the area of time / date setting, there was also a c
 <p><br /></p>
 
 <ul>
-  <li>myGrenton Application: o Increasing the buffer for connection to the cloud, o Reporting on value changes for:
+  <li>myGrenton Application:
     <ul>
-      <li>User features,</li>
-      <li>features of the Calendar virtual object,</li>
-      <li>features of the Schedule virtual object,</li>
-      <li>features of the PID virtual object,</li>
-      <li>features of the Timer virtual object.</li>
+      <li>Increasing the buffer for connection to the cloud,</li>
+      <li>Reporting on value changes for:
+        <ul>
+          <li>User features,</li>
+          <li>features of the Calendar virtual object,</li>
+          <li>features of the Schedule virtual object,</li>
+          <li>features of the PID virtual object,</li>
+          <li>features of the Timer virtual object.</li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>Analog In/Out - Unification of OnSwitchOn event generation for the AnalogIn and AnalogOut objects .</li>
-  <li>System stability improvements.</li>
+  <li>System stability improvements.
+<br /></li>
 </ul>
 
 <h3 id="v50306-build-1927a">v5.03.06 (build 1927A)</h3>
@@ -230,9 +240,9 @@ Due to changes introduced in the area of time / date setting, there was also a c
   <li>Support for new Grenton 2.0 modules - support for all currently sold Grenton 2.0 modules.</li>
   <li>New CLU update mechanism - allows you to update both the Z-Wave CLU as well as the Grenton 2.0 modules.</li>
   <li>Assigning numbers to Z-Wave objects with the same SN in different CLUs - adding the homeID of a given CLU to the name of the Z-Wave object.</li>
-  <li>Assigning an IP address when a given address is taken or 2 CLUs have the same addresses.</li>
+  <li>Assigning an IP address when a given address is taken or 2 CLUs have the same addresses.
+<br /></li>
 </ul>
-
 
         </section>
 
