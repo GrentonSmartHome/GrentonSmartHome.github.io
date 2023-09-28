@@ -1,0 +1,646 @@
+<!DOCTYPE html><html lang="pl"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="author" content="Grenton Sp. z o. o."/><title>Grenton Downloads</title><meta name="twitter:title" content="Grenton Downloads"/><meta name="og:title" content="Grenton Downloads"/><link href="/styles.css" rel="stylesheet"/><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"/></head><body class="bg-light"><nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation"><div class="container-fluid"><a class="navbar-brand" href="/release-pl"><img class="glogo" src="/images/logo.svg" alt="logo-grenton" height="18"/></a><span><a style="text-decoration: none;font-size: .835rem; color:#ffffff!important;" href="/beta-en/gatemodbus20-newobjects-modbusrtu-modbustcp"><img style="margin-bottom: 3px;" height="16px" src="/images/english.png"/>&nbsp;English</a></span></div></nav><div class="nav-scroller bg-white shadow-sm"><nav class="nav nav-underline" aria-label="Secondary navigation"><a class="nav-link active" aria-current="page" href="/beta-pl">&larr; Powrót</a></nav></div><main class="container"><div class="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm"><div class="lh-1"><h1 class="h6 mb-0 text-white lh-1">Moduł GATE MODBUS</h1><small>Instrukcja</small></div></div><h3 class="headver">Moduł GATE MODBUS</h3><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Opisana funkcjonalność oraz integracja jest dostępna dla <strong>GRENTON GATE MODBUS MASTER, DIN, Eth (INT-201 - E-01)</strong> posiadający <strong>firmware 1.4.1-2334 lub wyższy!</strong></small></div><p class="headdate"><em>Informacje ogólne</em></p><p>Moduł GATE MODBUS umożliwia integrację systemu Grenton ze wszystkimi urządzeniami wspierającymi standard MODBUS RTU / TCP.</p><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Dla tworzonych obiektów wirtualnych nie ma ograniczenia względem ilości obiektów - ograniczeniem jest pamięć urządzenia, na którą wpływa m.in. poziom rozbudowania logiki na module.</small></div><p class="headdate"><em>Konfiguracja modułu</em></p><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Przed rozpoczęciem jakiejkolwiek pracy z modułem GATE Modbus wymagana jest aktualizacja bazy interfejsów!</small></div><h5>Ustawianie czasu za pomocą serwera NTP</h5><p>Moduł GATE Modbus umożliwia ustawianie czasu za pomocą serwera NTP wraz z uwzględnieniem strefy czasowej a także zmianą czasu (zimowy/letni). Czas pobierany jest automatycznie z serwera NTP (<em>pool.ntp.org</em>).</p><p>Do konfiguracji służą trzy cechy:</p><ul><li><code>UseNTP</code> – określa czy GATE używa NTP,</li><li><code>NTPTimeout</code> - czas oczekiwania na odpowiedź z serwera NTP,</li><li><code>TimeZone</code> – ustawianie strefy czasowej GATE – dostępne są 22 strefy.</li></ul><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Pobieranie czasu z serwera NTP wymaga, aby GATE znajdowało się w sieci, która posiada połączenie z internetem. W momencie ustawienia cechy <code>UseCloud</code> = <code>true</code>, cecha <code>UseNTP</code> jest automatycznie ustawiana na wartość <code>true</code>.</small></div><p class="headdate"><em>Obiekty wirtualne</em></p><h5>Protokół Modbus RTU</h5><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>GATE MODBUS może pracować w tym samym czasie tylko jako Master <u>**lub**</u> Slave. Po dodaniu obiektu <code>ModbusSlaveConfigRTU</code> i wysłaniu konfiguracji GATE MODBUS pracuje wyłącznie jako Slave obsługując obiekty <code>ModbusSlaveRTU</code>. Utworzone obiekty wirtualne <code>ModbusRTU</code> są ignorowane.</small></div><h6>ModbusRTU</h6><p>Obiekt wirtualny <code>ModbusRTU</code> służy do odczytywania wartości z urządzeń Slave za pomocą protokołu RTU.</p><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Obiekt wirtualny <code>ModbusRTU</code> zastępuje wycofywane obiekty <code>Modbus</code> oraz <code>ModbusValue</code>.</small></div><p>Aby odczytać wartość z dostępnego urządzenia Slave należy kolejno:</p><ul><li>Utworzyć obiekt wirtualny <code>ModbusRTU</code> i nadać mu nazwę:</li></ul><img src="/images/images-pl/GATE_MODBUS_RTU_CONFIG_1.png" alt="GATE<em>MODBUS</em>RTU<em>CONFIG</em>1.png"/><ul><li>Przejść do zakładki <em>Cechy wbudowane</em> i wprowadzić:<ul><li><strong>TransmissionSpeed</strong> – prędkość transmisji;</li><li><strong>Parity</strong> - parametr ustawia sprawdzanie parzystości:<ul><li>0 - None</li><li>1 - Odd</li><li>2 - Even</li></ul></li><li><strong>StopBits</strong> - liczba bitów stopu urządzenia Slave:<ul><li>0 - 1 bit stopu</li><li>1 - 1.5 bitu stopu</li><li>2 - 2 bity stopu</li></ul></li><li><strong>DeviceAddress</strong> – adres urządzenia Slave;</li><li><strong>RefreshInterval</strong> - okres odpytywania rejestru urządzenia Slave przez GATE Modbus;</li><li><strong>ResponseTimeout</strong> - czas urządzenia Slave na odpowiedź (po jego przekroczeniu zwracany jest <code>ErrorCode</code>=-2);</li><li><strong>RegisterAddress</strong> – adres obsługiwanego rejestru;</li></ul></li></ul><ul><li>parametry odpowiednie dla wybranego typu rejestru urządzenia Slave;</li></ul><img src="/images/images-pl/GATE_MODBUS_RTU_CONFIG_2.png" alt="GATE<em>MODBUS</em>RTU<em>CONFIG</em>2.png"/><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>W obiekcie Gate Modbus od wersji 1.4.1-2334 została wprowadzona cecha <code>ModbusMasterFrameSpace</code> służąca do określania przerwy między wysyłanymi ramkami Modbus wyrażonej w znakach. W przypadku projektów z dużą ilością obiektów <code>ModbusRTU</code> i problemów z płynnością odpytywania dla krótkiego czasu <code>RefreshInterval</code> można wprowadzić od 1 do 50 pustych znaków między wysyłanymi ramkami.</small></div><h6>ModbusSlaveConfigRTU</h6><p>Obiekt wirtualny <code>ModbusSlaveConfigRTU</code> służy do konfiguracji modułu Gate Modbus pracującego jako urządzenie Slave. Aby tego dokonać należy:</p><ul><li>Utworzyć obiektu wirtualny <code>ModbusSlaveConfigRTU</code>:</li></ul><img src="/images/images-pl/GATE_MODBUS_SLAVE_CONFIG_RTU_CONFIG_1.png" alt="GATE<em>MODBUS</em>SLAVE<em>CONFIG</em>RTU<em>CONFIG</em>1.png"/><ul><li>Przejść do zakładki <em>Cechy wbudowane</em> i wprowadzić dane dotyczące komunikacji z urządzeniem Master RTU:<ul><li><strong>TransmissionSpeed</strong> – prędkość transmisji;</li><li><strong>Parity</strong> - parametr ustawia sprawdzanie parzystości:<ul><li>0 - None</li><li>1 - Odd</li><li>2 - Even</li></ul></li><li><strong>StopBits</strong> - liczba bitów stopu urządzenia Slave:<ul><li>0 - 1 bit stopu</li><li>1 - 1.5 bitu stopu</li><li>2 - 2 bity stopu</li></ul></li></ul></li></ul><p>Po wysłaniu konfiguracji Gate Modbus pracuje jako urządzenie Slave.</p><img src="/images/images-pl/GATE_MODBUS_SLAVE_CONFIG_RTU_CONFIG_2.png" alt="GATE<em>MODBUS</em>SLAVE<em>CONFIG</em>RTU<em>CONFIG</em>2.png"/><h6>ModbusSlaveRTU</h6><p>Obiekt wirtualny <code>ModbusSlaveRTU</code> służy do definiowania wartości dla poszczególnych rejestrów urządzenia Slave. Aby obiekt działał prawidłowo w pierwszej kolejności należy utworzyć obiekt <code>ModbusSlaveConfigRTU</code> (<a href="#B. ModbusSlaveConfigRTU">patrz pkt.B.</a>). W celu skorzystania z funkcjonalności należy:</p><ul><li>Utworzyć obiekt wirtualny <code>ModbusSlaveRTU</code>:</li></ul><img src="/images/images-pl/GATE_MODBUS_SLAVE_RTU_CONFIG_1.png" alt="GATE<em>MODBUS</em>SLAVE<em>RTU</em>CONFIG_1.png"/><ul><li>Przejść do zakładki <em>Cechy wbudowane</em> i wprowadzić dane dotyczące komunikacji z urządzeniem Master RTU:<ul><li><strong>DeviceAddress</strong> – adres urządzenia Slave;</li><li><strong>RegisterAddress</strong> – adres obsługiwanego rejestru;</li><li><strong>RegisterType</strong> - typ rejestru;</li><li><strong>DataType</strong> - typ wartości;</li><li><strong>DataWidth</strong> - szerokość danych;</li><li><strong>Endianness</strong> - kolejność bajtów;</li><li><strong>InitialValue</strong> - początkowa wartość rejestru.</li></ul></li></ul><img src="/images/images-pl/GATE_MODBUS_SLAVE_RTU_CONFIG_2.png" alt="GATE<em>MODBUS</em>SLAVE<em>RTU</em>CONFIG_2.png"/><h6>Modbus</h6><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Obiekt wirtualny <code>Modbus</code> został wycofany w wersji Gate Modbus 1.4.1-2334 wraz z wprowadzeniem nowego obiektu wirtualnego <code>ModbusRTU</code>, który jest jego odpowiednikiem. W celu zapewnienia kompatybilności z już istniejącymi projektami obiekt pozostaje dostępny do użytku. Możliwość tworzenia nowych obiektów tego typu została wyłączona.</small></div><p>Chcąc przeprowadzić poprawną konfigurację modułu Gate Modbus należy kolejno:</p><ul><li>Utworzyć obiekt wirtualny <em>Modbus</em> i nadać mu nazwę:</li></ul><img src="/images/images-pl/GATE_MODBUS_CONFIG_1.png" alt="GATE<em>MODBUS</em>CONFIG_1.png"/><ul><li>Przejść do zakładki <em>Cechy wbudowane</em> i wprowadzić:<ul><li><strong>DeviceAddress</strong> – adres urządzenia Slave;</li><li><strong>AccessRights</strong> - tryb pracy (<em>Read</em> - odczyt wartości z rejestru; <em>ReadWrite</em> - umożliwia zapis wartości do ustawionego rejestru);</li><li><strong>RegisterAddress</strong> – adres obsługiwanego rejestru;</li><li><strong>TransmissionSpeed</strong> – prędkość transmisji;</li><li><strong>RefreshInterval</strong> - okres odpytywania rejestru urządzenia Slave przez GATE Modbus;</li><li><strong>ResponseTimeout</strong> - czas urządzenia Slave na odpowiedź (po jego przekroczeniu zwracany jest <code>ErrorCode</code>=<strong>-2</strong>);</li><li><strong>Divisor</strong> - dzielnik (dla <code>ValueType</code>=<em>Number</em>/<em>Float</em>);</li></ul></li><li>parametry odpowiednie dla wybranego typu rejestru urządzenia Slave;<ul><li><strong>StopBits</strong> - liczba bitów stopu urządzenia Slave:<ul><li>0 - 1 bit stopu</li><li>1 - 1.5 bitu stopu</li><li>2 - 2 bity stopu</li></ul></li><li><strong>Parity</strong> - parametr ustawia sprawdzanie parzystości:<ul><li>0 - None</li><li>1 - Odd</li><li>2 - Even</li></ul></li></ul></li></ul><img src="/images/images-pl/GATE_MODBUS_CONFIG_2.png" alt="GATE<em>MODBUS</em>CONFIG_2.png"/><ul><li>Wysłać konfigurację oraz zweryfikować połączenie – zakładka <em>Cechy wbudowane</em>, cecha <code>ErrorCode</code>=0 (poprawny odczyt/zapis):</li></ul><img src="/images/images-pl/GATE_MODBUS_CONFIG_3.png" alt="GATE<em>MODBUS</em>CONFIG_3.png"/><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>W obiekcie Gate Modbus od wersji 1.4.1-2334 została wprowadzona cecha <code>ModbusMasterFrameSpace</code> służąca do określania przerwy między wysyłanymi ramkami Modbus wyrażonej w znakach. W przypadku projektów z dużą ilością obiektów <code> i problemów z płynnością odpytywania dla krótkiego czasu </code>RefreshInterval` można wprowadzić od 1 do 50 pustych znaków między wysyłanymi ramkami.</small></div><h6>ModbusValue</h6><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Obiekt wirtualny <code>ModbusValue </code> został wycofany w wersji Gate Modbus 1.4.1-2334 wraz z wprowadzeniem nowego obiektu wirtualnego <code>ModbusRTU</code>, który jest jego odpowiednikiem. W celu zapewnienia kompatybilności z już istniejącymi projektami obiekt pozostaje do użytku. Nie jest możliwe tworzenie nowych obiektów tego typu.</small></div><p>Aby użyć obiektu wirtualnego <code>ModbusValue</code> należy:</p><ul><li>Utworzyć obiekt wirtualny <code>ModbusValue</code> i nadać mu nazwę:</li></ul><img src="/images/images-pl/GATE_MODBUS_VALUE_CONFIG_1.png" alt="GATE<em>MODBUS</em>VALUE<em>CONFIG</em>1.png"/><ul><li>Przejść do zakładki <em>Cechy wbudowane</em> i wprowadzić:<ul><li><strong>TransmissionSpeed</strong> – prędkość transmisji;</li><li><strong>Parity</strong> - parametr ustawia sprawdzanie parzystości:<ul><li>0 - None</li><li>1 - Odd</li><li>2 - Even</li></ul></li><li><strong>StopBits</strong> - liczba bitów stopu urządzenia Slave:<ul><li>0 - 1 bit stopu</li><li>1 - 1.5 bitu stopu</li><li>2 - 2 bity stopu</li></ul></li><li><strong>DeviceAddress</strong> – adres urządzenia Slave;</li><li><strong>ResponseTimeout</strong> - czas na odpowiedź w krokach 25ms;</li><li><strong>RefreshPeriod</strong> - minimalny okres odświeżania w krokach 5ms - wartość 0 wyłącza automatyczne odświeżanie;</li><li><strong>RegisterAddress</strong> – adres obsługiwanego rejestru;</li><li><strong>RegisterType</strong> - typ ustawionego rejestru:<ul><li>0 - wyjścia dwustanowe</li><li>1 - wejścia dwustanowe</li><li>2 - rejestry pamiętające</li><li>3 - rejestry wejściowe</li></ul></li><li><strong>Divisor</strong> - dzielnik (skala) wartości;</li><li><strong>InitialValueAccess</strong> - metoda pierwszego dostępu do wartości Value:<ul><li>0 - wartość początkowa Value jest odczytywana z urządzenia;</li><li>1 - wartość początkowa Value jest zapisywana do urządzenia;</li></ul></li></ul></li></ul><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Wpisanie wybranej wartości w polu <code>Value</code> przy ustawieniu cechy <code>InitialValueAccess</code> = 1 powoduje zapisanie wartości (wysłanie odpowiedniej ramki) po wysłaniu konfiguracji na CLU. Jeśli wartość cechy <code>InitialValueAccess</code>=0 wpisana wartość w polu <code>Value</code> jest ignorowana.</small></div><ul><li>parametry odpowiednie dla wybranego typu rejestru urządzenia Slave;</li></ul><img src="/images/images-pl/GATE_MODBUS_VALUE_CONFIG_2.png" alt="GATE<em>MODBUS</em>VALUE<em>CONFIG</em>2.png"/><ul><li>Wysłać konfigurację oraz zweryfikować połączenie – zakładka <em>Cechy wbudowane</em>, cecha <code>ErrorCode</code>=0 (poprawny odczyt/zapis):</li></ul><img src="/images/images-pl/GATE_MODBUS_VALUE_CONFIG_3.png" alt="GATE<em>MODBUS</em>VALUE<em>CONFIG</em>3.png"/><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>W obiekcie Gate Modbus od wersji 1.4.1-2334 została wprowadzona cecha <code>ModbusMasterFrameSpace</code> służąca do określania przerwy między wysyłanymi ramkami Modbus wyrażonej w znakach. W przypadku projektów z dużą ilością obiektów i problemów z płynnością odpytywania dla krótkiego czasu <code>RefreshInterval</code> można wprowadzić od 1 do 50 pustych znaków między wysyłanymi ramkami.</small></div><h5>Protokół Modbus TCP</h5><h6>ModbusClient</h6><p>Obiekt wirtualny <code>ModbusClient</code> służy do komunikacji z urządzeniami typu serwer za pomocą sieci LAN.</p><p>Aby użyć obiektu wirtualnego <code>ModbusClient</code> należy:</p><ul><li>Utworzyć obiekt wirtualny <code>ModbusClient</code> i nadać mu nazwę:</li></ul><img src="/images/images-pl/GATE_MODBUS_CLIENT_CONFIG_1.png" alt="GATE<em>MODBUS</em>CLIENT<em>CONFIG</em>1.png"/><ul><li>Przejść do zakładki <em>Cechy wbudowane</em> i wprowadzić:<ul><li><strong>SocketAddress</strong> – adres IP urządzenia Modbus;</li><li><strong>DeviceAddress</strong> – adres urządzenia Modbus;</li><li><strong>ResponseTimeout</strong> - czas na odpowiedź w krokach 25ms;</li><li><strong>RefreshInterval</strong> - minimalny okres odświeżania w krokach 5ms - wartość 0 wyłącza automatyczne odświeżanie;</li><li><strong>RegisterAddress</strong> – adres obsługiwanego rejestru;</li><li><strong>RegisterType</strong> - typ ustawionego rejestru:<ul><li>0 - wyjścia dwustanowe</li><li>1 - wejścia dwustanowe</li><li>2 - rejestry pamiętające</li><li>3 - rejestry wejściowe</li></ul></li><li><strong>Divisor</strong> - dzielnik (skala) wartości;</li><li><strong>InitialValueAccess</strong> - metoda pierwszego dostępu do wartości Value:<ul><li>0 - wartość początkowa Value jest odczytywana z urządzenia</li><li>1 - wartość początkowa Value jest zapisywana do urządzenia</li></ul></li><li>parametry odpowiednie dla wybranego typu rejestru urządzenia serwer:</li></ul></li></ul><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Wpisanie wybranej wartości w polu <code>InitialValue</code> przy ustawieniu cechy <code>InitialValueAccess </code>= 1 powoduje zapisanie wartości (wysłanie odpowiedniej ramki) po wysłaniu konfiguracji na CLU. Jeśli wartość cechy <code>InitialValueAccess</code> = 0 wpisana wartość w polu <code>InitialValue</code> jest ignorowana.</small></div><ul><li>Wysłać konfigurację oraz zweryfikować połączenie – zakładka <em>Cechy wbudowane</em>, cecha <code>ErrorCode</code>=0 (poprawny odczyt/zapis):</li></ul><img src="/images/images-pl/GATE_MODBUS_CLIENT_CONFIG_2.png" alt="GATE<em>MODBUS</em>CLIENT<em>CONFIG</em>2.png"/><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Domyślny port pracy urządzenia serwer wynosi 502. Istnieje możliwość pracy na innym, zdefiniowanym porcie. W takim wypadku po wpisanym adresie IP urządzenia należy po <code>:</code> dodać docelowy port komunikacji - przykładowo: <code>192.168.0.103:8888</code>.</small></div><h6>ModbusServer</h6><p>Obiekt wirtualny <code>ModbusServer</code> służy do komunikacji z urządzeniami typu klient za pomocą sieci LAN.</p><p>Aby użyć obiektu wirtualnego <code>ModbusServer</code> należy:</p><ul><li>Utworzyć obiekt wirtualny <code>ModbusServer</code> i nadać mu nazwę:</li></ul><img src="/images/images-pl/GATE_MODBUS_SERVER_CONFIG_1.png" alt="GATE<em>MODBUS</em>SERVER<em>CONFIG</em>1.png"/><ul><li>Przejść do zakładki <em>Cechy wbudowane</em> i wprowadzić:<ul><li><strong>Port</strong> – Port nasłuchiwania serwera;</li><li><strong>DeviceAddress</strong> – adres urządzenia Modbus;</li><li><strong>RegisterAddress</strong> – adres obsługiwanego rejestru;</li><li><strong>RegisterType</strong> - typ ustawionego rejestru:<ul><li>0 - wyjścia dwustanowe</li><li>1 - wejścia dwustanowe</li><li>2 - rejestry pamiętające</li><li>3 - rejestry wejściowe</li></ul></li><li><strong>DataType</strong> - typ wartości;</li><li><strong>DataWidth</strong> - szerokość danych;</li><li><strong>Endianness</strong> - kolejność bajtów;</li><li><strong>InitialValue</strong> - początkowa wartość rejestru;</li><li>parametry odpowiednie dla wybranego typu rejestru urządzenia klient:</li><li>Wysłać konfigurację oraz zweryfikować połączenie za pomocą urządzenia klient</li></ul></li></ul><img src="/images/images-pl/GATE_MODBUS_SERVER_CONFIG_2.png" alt="GATE<em>MODBUS</em>SERVER<em>CONFIG</em>2.png"/><p class="headdate"><em>Parametry rejestrów</em></p><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Opisane obiekty wirtualne dostępne są dla <strong>GRENTON GATE MODBUS MASTER, DIN, Eth (INT-201 - E-01)</strong> posiadający <strong>firmware 1.4.1-2334 lub wyższy!</strong></small></div><h5>Obiekt ModbusRTU oraz ModbusClient</h5><p>Parametry rejestrów w przypadku obiektów <code>ModbusRTU</code> oraz <code>ModbusClient</code> nie różnią się w obszarze konfiguracji - jedyna różnica polega na sposobie komunikacji z docelowym urządzeniem. Poniżej przedstawiono sposoby odczytu wartości z rejestrów urządzeń Slave / serwer.</p><h6>16-bitowe wartości całkowite rejestrów</h6><p>Odczyt 16-bitowych rejestrów pamiętających (<code>Read Holding Registers</code>, <em>FunctionCode = 03</em>):</p><ul><li><code>RegisterType</code>: Holding Registers;</li><li><code>DataType</code>: Unsigned Integer;</li><li><code>DataWidth</code>: 16;</li><li><code>Endianness</code>: wartość domyślna;</li><li><code>BitFieldWidth</code>: wartość domyślna;</li><li><code>BitFieldPosition</code>: wartość domyślna.</li></ul><img src="/images/images-pl/GATE_MODBUS_RTU_REGISTERS_PARAM_1.png" alt="GATE<em>MODBUS</em>RTU<em>REGISTERS</em>PARAM_1.png"/><img src="/images/images-pl/GATE_MODBUS_CLIENT_REGISTERS_PARAM_1.png" alt="GATE<em>MODBUS</em>CLIENT<em>REGISTERS</em>PARAM_1.png"/><p>Odczyt 16-bitowych rejestrów wejściowych (<code>Read Input Registers</code>, <em>FunctionCode = 04</em>):</p><ul><li><code>RegisterType</code>: Input Registers;</li><li><code>DataType</code>: Unsigned Integer;</li><li><code>DataWidth</code>: 16;</li><li><code>Endianness</code>: wartość domyślna;</li><li><code>BitFieldWidth</code>: wartość domyślna;</li><li><code>BitFieldPosition</code>: wartość domyślna.</li></ul><p>Zapis 16-bitowych rejestrów pamiętających (<code>Preset / Write Single Holding Register</code>, <em>FunctionCode = 06</em>):</p><ul><li><code>RegisterType</code>: Holding Registers;</li><li><code>AlwaysWriteMultiple</code>: No;</li><li><code>DataType</code>: Unsigned Integer;</li><li><code>DataWidth</code>: 16;</li><li><code>Endianness</code>: wartość domyślna;</li><li><code>BitFieldWidth</code>: wartość domyślna;</li><li><code>BitFieldPosition</code>: wartość domyślna.</li></ul><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>W przypadku zapisu do rejestrów 16-bitowych możliwe jest użycie funkcji 16 (<code>Write Multiple Holding Register</code>) zamiast funkcji 6 (<code>Write Single Holding Register</code>) w przypadku kiedy urządzenie Slave akceptuje jedynie zapis tego typu. W tym celu należy użyć cechy <code>AlwaysWriteMultiple</code> i ustawić ją na wartość 1.</small></div><p>Zapis 16-bitowych rejestrów pamiętających (<code>Preset / Write Multiple Holding Registers</code>, <em>FunctionCode = 16</em>):</p><ul><li><code>RegisterType</code>: Holding Registers;</li><li><code>AlwaysWriteMultiple</code>: Yes</li><li><code>DataType</code>: Unsigned Integer;</li><li><code>DataWidth</code>: 16;</li><li><code>Endianness</code>: wartość domyślna;</li><li><code>BitFieldWidth</code>: wartość domyślna;</li><li><code>BitFieldPosition</code>: wartość domyślna.</li></ul><img src="/images/images-pl/GATE_MODBUS_CLIENT_REGISTERS_PARAM_2.png" alt="GATE<em>MODBUS</em>CLIENT<em>REGISTERS</em>PARAM_2.png"/><h6>Pola bitowe w rejestrach 16-bitowych</h6><p>Odczyt pól bitowych w 16-bitowym rejestrze pamiętającym (<code>Read Holding Registers</code>, <em>FunctionCode = 03</em>):</p><ul><li><code>RegisterType</code>: Holding Registers;</li><li><code>DataType</code>: Unsigned Integer;</li><li><code>DataWidth</code>: 16;</li><li><code>Endianness</code>: wartość domyślna;</li><li><code>BitFieldWidth</code>: 0 - 16 (ilość odczytywanych kolejno bitów; dla wartości 0 przyjmowana jest automatycznie szerokość maksymalna = <code>DataWidth</code>);</li><li><code>BitFieldPosition</code>: 0 - 15 (pozycja pierwszego interesującego bitu).</li></ul><div class="alert alert-warning" role="alert"><small><b class="uwaga">UWAGA!</b><br>Zakres liczbowy cechy <code>BitFieldWidth</code> zależy od ustawienia wartości cechy <code>DataWidth</code>. Dla <code>DataWidth</code> = 16 zakres cechy <code>BitFieldWidth</code> wynosi [0 - 16]. W chwili ustawienia cechy <code>BitFieldWidth</code> na wartość równą 0 i wysłaniu konfiguracji cecha przyjmuje wartość maksymalną dla aktualnie ustawionej wartości cechy <code>DataWidth</code>. Zakres liczbowy cechy <code>BitFieldPosition</code> zależy od ustawienia wartości cechy <code>DataWidth</code>. Dla <code>DataWidth</code> = 16 zakres cechy <code>BitFieldWidth</code> wynosi [0 - 15]. Cechy <code>BitFieldWidth</code> i <code>BitFieldPosition</code> są uzależnione od cechy <code>DataWidth</code>. Działają one wg zależności: <code>BitFieldWidth</code> - <code>BitFieldPosition</code> <= `DataWidth`. Na przykład: W chwili ustawienia `DataWidth` i `BitFieldWidth` = 16 oraz`BitFieldPositon` = 15 cecha `BitFieldWidth` automatycznie przyjmie wartość = 1. Dla `BitFieldWidth`=0 cecha `BitFieldPosition` przyjmuje zawsze 0.
+
+![GATE_MODBUS_RTU_REGISTERS_PARAM_2.png](/images/images-pl/GATE_MODBUS_RTU_REGISTERS_PARAM_2.png)
+
+Odczyt pól bitowych w 16-bitowym rejestrze wejściowym (`Read Input Registers`, *FunctionCode = 04*):
+
+- `RegisterType`: Input Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 16;
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: 0 - 16 (ilość odczytywanych kolejno bitów; dla wartości 0 przyjmowana jest automatycznie szerokość maksymalna = `DataWidth`);
+- `BitFieldPosition`: 0 - 15 (pozycja pierwszego interesującego bitu).
+
+Zapis pól bitowych w 16-bitowym rejestrze pamiętającym (`Preset / Write Single Holding Register`, *FunctionCode = 06*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 16;
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: 0 - 16 (ilość odczytywanych kolejno bitów; dla wartości 0 przyjmowana jest automatycznie szerokość maksymalna = `DataWidth`);
+- `BitFieldPosition`: 0 - 15 (pozycja pierwszego interesującego bitu).
+
+###### 32 - bitowe wartości całkowite rejestrów
+
+Odczyt 32 - bitowych wartości całkowitych rejestru pamiętającego (`Read Holding Registers`, *FunctionCode = 03*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 32;
+- `Endianness`: Big Endian;
+- `BitFieldWidth`: wartość domyślna;
+- `BitFieldPosition`: wartość domyślna.
+
+![GATE_MODBUS_RTU_REGISTERS_PARAM_3.png](/images/images-pl/GATE_MODBUS_RTU_REGISTERS_PARAM_3.png)
+
+Odczyt 32 - bitowych wartości całkowitych rejestru wejściowego (`Read Input Registers`, *FunctionCode = 04*):
+
+- `RegisterType`: Input Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 32;
+- `Endianness`: Big Endian;
+- `BitFieldWidth`: wartość domyślna;
+- `BitFieldPosition`: wartość domyślna.
+
+Zapis 32 - bitowych wartości całkowitych w rejestrze pamiętającym (`Preset / Write Multiple Holding Registers`, *FunctionCode = 16*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 32;
+- `Endianness`: Big Endian;
+- `BitFieldWidth`: wartość domyślna;
+- `BitFieldPosition`: wartość domyślna.
+
+###### Pola bitowe w rejestrach 32 - bitowych
+
+Odczyt pól bitowych w 32 - bitowym rejestrze pamiętającym (`Read Holding Registers`, *FunctionCode = 03*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 32;
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: 0 - 32 (ilość odczytywanych kolejno bitów; dla wartości 0 przyjmowana jest automatycznie szerokość maksymalna = `DataWidth`);
+- `BitFieldPosition`: 0 - 31 (pozycja pierwszego interesującego bitu).
+
+> Zakres liczbowy cechy `BitFieldWidth` zależy od ustawienia wartości cechy `DataWidth`. Dla `DataWidth` = 32 zakres cechy `BitFieldWidth` wynosi [0 - 32]. W chwili ustawienia cechy `BitFieldWidth` na wartość równą 0 i wysłaniu konfiguracji cecha przyjmuje wartość maksymalną dla aktualnie ustawionej wartości cechy `DataWidth`. Zakres liczbowy cechy `BitFieldPosition` zależy od ustawienia wartości cechy `DataWidth`. Dla `DataWidth` = 32 zakres cechy `BitFieldWidth` wynosi [0 - 31]. Cechy `BitFieldWidth` i `BitFieldPosition` są uzależnione od cechy `DataWidth`. Działają one wg zależności: `BitFieldWidth` - `BitFieldPosition` <= `DataWidth`. Na przykład: W chwili ustawienia `DataWidth` i `BitFieldWidth` = 32 oraz `BitFieldPositon` = 15 cecha `BitFieldWidth` automatycznie przyjmie wartość = 17. Dla `BitFieldWidth`=0 cecha `BitFieldPosition` przyjmuje zawsze 0.
+
+![GATE_MODBUS_RTU_REGISTERS_PARAM_4.png](/images/images-pl/GATE_MODBUS_RTU_REGISTERS_PARAM_4.png)
+
+Odczyt pól bitowych w 32 - bitowym rejestrze wejściowym (`Read Input Registers`, *FunctionCode = 04*):
+
+- `RegisterType`: Input Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 32;
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: 0 - 32 (ilość odczytywanych kolejno bitów; dla wartości 0 przyjmowana jest automatycznie szerokość maksymalna = `DataWidth`);
+- `BitFieldPosition`: 0 - 31 (pozycja pierwszego interesującego bitu).
+
+Zapis pól bitowych w 16-bitowym rejestrze pamiętającym (`Preset / Write Single Holding Register`, *FunctionCode = 06*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 32;
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: 0 - 32 (ilość odczytywanych kolejno bitów; dla wartości 0 przyjmowana jest automatycznie szerokość maksymalna = `DataWidth`);
+- `BitFieldPosition`: 0 - 31 (pozycja pierwszego interesującego bitu).
+
+###### 32 - bitowe wartości zmiennoprzecinkowe rejestrów
+
+Odczyt 32 - bitowych wartości zmiennoprzecinkowych rejestru pamiętającego (`Read Holding Registers`, *FunctionCode = 03*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Floating-point;
+- `DataWidth`: 32;
+- `Endianness`: Big Endian.
+
+> Dla `DataType` = Floating-point cechy `BitFieldWidth`, `BitFieldPosition` oraz `Divisor` są nieaktywne i przyjmują zawsze wartość 0!
+
+![GATE_MODBUS_RTU_REGISTERS_PARAM_5.png](/images/images-pl/GATE_MODBUS_RTU_REGISTERS_PARAM_5.png)
+
+Odczyt 32 - bitowych wartości zmiennoprzecinkowych rejestru wejściowego (`Read Input Registers`, *FunctionCode = 04*):
+
+- `RegisterType`: Input Registers;
+- `DataType`: Floating-point;
+- `DataWidth`: 32;
+- `Endianness`: Big Endian.
+
+Zapis 32 - bitowych wartości zmiennoprzecinkowych w rejestrze pamiętającym (`Preset / Write Multiple Holding Registers`, *FunctionCode = 16*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Floating-point;
+- `DataWidth`: 32;
+- `Endianness`: Big Endian.
+
+###### 64 - bitowe wartości całkowite rejestrów
+
+Odczyt 64 - bitowych rejestrów pamiętających (`Read Holding Registers`, *FunctionCode = 03*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 64
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: wartość domyślna;
+- `BitFieldPosition`: wartość domyślna.
+
+![GATE_MODBUS_RTU_REGISTERS_PARAM_6.png](/images/images-pl/GATE_MODBUS_RTU_REGISTERS_PARAM_6.png)
+
+Odczyt 64 - bitowych rejestrów wejściowych (`Read Input Registers`, *FunctionCode = 04*):
+
+- `RegisterType`: Input Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 64
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: wartość domyślna;
+- `BitFieldPosition`: wartość domyślna.
+
+Zapis 64 - bitowych rejestrów pamiętających (`Preset / Write Single Holding Register`, *FunctionCode = 06*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 64;
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: wartość domyślna;
+- `BitFieldPosition`: wartość domyślna.
+
+###### Pola bitowe w rejestrach 64 - bitowych
+
+Odczyt pól bitowych w 64 - bitowym rejestrze pamiętającym (`Read Holding Registers`, *FunctionCode = 03*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 64;
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: 0 - 64 (ilość odczytywanych kolejno bitów; dla wartości 0 przyjmowana jest automatycznie szerokość maksymalna = `DataWidth`);
+- `BitFieldPosition`: 0 - 63 (pozycja pierwszego interesującego bitu).
+
+> Zakres liczbowy cechy `BitFieldWidth` zależy od ustawienia wartości cechy `DataWidth`. Dla `DataWidth` = 64 zakres cechy `BitFieldWidth` wynosi [0 - 64]. W chwili ustawienia cechy `BitFieldWidth` na wartość równą 0 i wysłaniu konfiguracji cecha przyjmuje wartość maksymalną dla aktualnie ustawionej wartości cechy `DataWidth`. Zakres liczbowy cechy `BitFieldPosition` zależy od ustawienia wartości cechy `DataWidth`. Dla `DataWidth` = 64 zakres cechy `BitFieldPosition` wynosi [0 - 63]. Cechy `BitFieldWidth` i `BitFieldPosition` są uzależnione od cechy `DataWidth`. Działają one wg zależności: `BitFieldWidth` - `BitFieldPosition` <= `DataWidth`. Na przykład: W chwili ustawienia `DataWidth` i `BitFieldWidth` = 60 oraz `BitFieldPositon` = 15 cecha `BitFieldWidth` automatycznie przyjmie wartość = 49. Dla `BitFieldWidth`=0 cecha `BitFieldPosition` przyjmuje zawsze 0.
+
+![GATE_MODBUS_RTU_REGISTERS_PARAM_7.png](/images/images-pl/GATE_MODBUS_RTU_REGISTERS_PARAM_7.png)
+
+Odczyt pól bitowych w 64 - bitowym rejestrze wejściowym (`Read Input Registers`, *FunctionCode = 04*):
+
+- `RegisterType`: Input Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 64;
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: 0 - 64 (ilość odczytywanych kolejno bitów; dla wartości 0 przyjmowana jest automatycznie szerokość maksymalna = `DataWidth`);
+- `BitFieldPosition`: 0 - 63 (pozycja pierwszego interesującego bitu).
+
+Zapis pól bitowych w 16-bitowym rejestrze pamiętającym (`Preset / Write Single Holding Register`, *FunctionCode = 06*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Unsigned Integer;
+- `DataWidth`: 64;
+- `Endianness`: wartość domyślna;
+- `BitFieldWidth`: 0 - 64 (ilość odczytywanych kolejno bitów; dla wartości 0 przyjmowana jest automatycznie szerokość maksymalna = `DataWidth`);
+- `BitFieldPosition`: 0 - 63 (pozycja pierwszego interesującego bitu).
+
+###### 64 - bitowe wartości zmiennoprzecinkowe rejestrów
+
+Odczyt 64 - bitowych wartości zmiennoprzecinkowych rejestru pamiętającego (`Read Holding Registers`, *FunctionCode = 03*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Floating-point;
+- `DataWidth`: 64;
+- `Endianness`: Big Endian.
+
+> Dla `DataType` = Floating-point cechy `BitFieldWidth`, `BitFieldPosition` oraz `Divisor` są nieaktywne i przyjmują zawsze wartość 0!
+
+![GATE_MODBUS_RTU_REGISTERS_PARAM_8.png](/images/images-pl/GATE_MODBUS_RTU_REGISTERS_PARAM_8.png)
+
+Odczyt 64 - bitowych wartości zmiennoprzecinkowych rejestru wejściowego (`Read Input Registers`, *FunctionCode = 04*):
+
+- `RegisterType`: Input Registers;
+- `DataType`: Floating-point;
+- `DataWidth`: 64;
+- `Endianness`: Big Endian.
+
+Zapis 64 - bitowych wartości zmiennoprzecinkowych w rejestrze pamiętającym (`Preset / Write Multiple Holding Registers`, *FunctionCode = 16*):
+
+- `RegisterType`: Holding Registers;
+- `DataType`: Floating-point;
+- `DataWidth`: 64;
+- `Endianness`: Big Endian.
+
+###### Dyskretne wejścia / wyjścia
+
+Odczyt dyskretnych wyjść / wejść bitowych (`Read Coils`, *FunctionCode = 01*):
+
+- `RegisterType`: Discrete outputs / coils;
+- `InputOutputCount`: 1 - 64 (liczba dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu).
+
+> Dla typów rejestrów `Discrete outputs / coils` i `Discrete Inputs` cechy `DataType`, `DataWidth`, `Endianness`, `BitFieldWidth`, `BitFieldPosition`,  `Divisor` są nieaktywne i przyjmują wartość 0!
+
+![GATE_MODBUS_RTU_REGISTERS_PARAM_9.png](/images/images-pl/GATE_MODBUS_RTU_REGISTERS_PARAM_9.png)
+
+Odczyt dyskretnych wejść dwustanowych (`Read Discrete Inputs`, *FunctionCode = 02*):
+
+- `RegisterType`: Discrete Inputs;
+- `InputOutputCount`: 1 - 64 (liczba dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu).
+
+Zapis dyskretnych wyjść/wejść bitowych (`Write Single Coil`, *FunctionCode = 05*)
+
+- `RegisterType`: Discrete outputs / coils;
+- `AlwaysWriteMultiple`: No
+- `InputOutputCount`: 1 (liczba dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu).
+
+Zapis dyskretnych wyjść/wejść bitowych (`Write Single Coil`, *FunctionCode = 15*)
+
+- `RegisterType`: Discrete outputs / coils;
+- `AlwaysWriteMultiple`: No
+- `InputOutputCount`: 2 - 64 (liczba dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu).
+
+> W przypadku zapisu wartości do pojedynczego wejścia dwustanowego `InputOutputCount` = 1 możliwe jest użycie funkcji 15 (`Write Single Coil`) zamiast funkcji 5 (`Write Multiple Coils`) w przypadku kiedy urządzenie Slave akceptuje jedynie zapis tego typu. W tym celu należy użyć cechy `AlwaysWriteMultiple` i ustawić ją na wartość 1.
+
+Zapis dyskretnych wyjść/wejść bitowych (`Write Multiple Coils`, *FunctionCode = 15*):
+
+- `RegisterType`: Discrete outputs / coils;
+- `AlwaysWriteMultiple`: Yes
+- `InputOutputCount`: 1 (liczba dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu).
+
+##### Obiekty ModbusSlaveRTU oraz ModbusServer
+
+Obiekty `ModbusSlaveRTU` / `ModbusServer` służą do przechowywania danych za pomocą rejestrów dostępnych w protokole MODBUS. Parametry rejestrów w przypadku obiektów nie różnią się w obszarze konfiguracji - jedyna różnica polega na sposobie komunikacji z docelowym urządzenie. Poniżej przedstawiono przykładowe sposoby przechowywania wartości w rejestrach.
+
+###### 16-bitowe wartości całkowite rejestrów
+
+![GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_1.png](/images/images-pl/GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_1.png)
+
+![GATE_MODBUS_SERVER_REGISTERS_PARAM_1.png](/images/images-pl/GATE_MODBUS_SERVER_REGISTERS_PARAM_1.png)
+
+###### 16-bitowe wartości całkowite ujemne rejestrów 
+
+![GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_2.png](/images/images-pl/GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_2.png)
+
+###### 32 - bitowe wartości całkowite rejestrów
+
+![GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_3.png](/images/images-pl/GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_3.png)
+
+###### 32 - bitowe wartości całkowite ujemne rejestrów
+
+![GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_4.png](/images/images-pl/GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_4.png)
+
+###### 32 - bitowe wartości zmiennoprzecinkowe
+
+![GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_7.png](/images/images-pl/GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_7.png)
+
+###### Wyjścia dyskretne (coil) i Wejścia dyskretne
+
+![GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_5.png](/images/images-pl/GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_5.png)
+
+![GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_6.png](/images/images-pl/GATE_MODBUS_SLAVE_RTU_REGISTERS_PARAM_6.png)
+
+> Jeden obiekt `ModbusSlaveRTU` dla typu rejestru `Wejścia dyskretne` i `Wyjścia dyskretne` odpowiada jednemu bitowi danych. Każdy kolejny utworzony obiekt to kolejny bit.
+
+#### Przywracanie ustawień fabrycznych - *Hard Reset*
+
+Uruchomienie funkcji *Hard Reset* na module GATE Modbus powoduje:
+
+- Usunięcie zapisanej konfiguracji;
+- Sformatowanie partycji pamięci flash;
+- Usunięcie wszystkich utworzonych obiektów LUA;
+- Utratę komunikacji pomiędzy OM / HM a modułem Gate.
+
+W celu przywrócenia ustawień fabrycznych funkcją *Hard Reset* należy wykonać następujące czynności (zgodnie z podaną kolejnością):
+
+- Odłączyć zasilanie od modułu Gate;
+- Nacisnąć i przytrzymać przycisk *Reset* na module (przycisk znajduje się pod dolną zaślepką modułu);
+- Podłączyć zasilanie do modułu Gate;
+- Trzymać wciśnięty przycisk *Reset* przez co najmniej 10 sekund - podczas resetu dioda zielona będzie świecić światłem ciągłym. Prawidłowe wykonanie resetu zostanie potwierdzone 3-krotnym mrugnięciem diody zielonej.
+- Po upływie 10 sekund zwolnić przycisk *Reset*
+- Odczekać około 60 sekund aż do momentu, gdy na module diody - zielona oraz czerwona - będą mrugać naprzemiennie (tryb *Emergency*)
+
+Po wykonaniu procedury na module zostanie wyczyszczona konfiguracja, natomiast sam moduł przestanie być widoczny (brak odpowiedzi na *Keep-Alive*) w projekcie z poziomu Object Managera. Aby ponownie przywrócić moduł, należy wykonać CLU Discovery a następnie wysłać konfigurację.
+
+#### Parametry konfiguracyjne
+
+> Opisana funkcjonalność oraz integracja jest dostępna dla **GRENTON GATE MODBUS MASTER, DIN, Eth (INT-201 - E-01)** posiadający **firmware 1.4.1-2334 lub wyższy!**
+
+###### Obiekt GATE
+
+**CECHY**
+
+| Nazwa                    | Opis                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| `Uptime`                 | Czas pracy urządzenia od ostatniego resetu (w sekundach)     |
+| `ClientReportInterval`   | Okres raportowania o zmianach cech                           |
+| `Date`                   | Zwraca aktualną datę                                         |
+| `Time`                   | Zwraca aktualny czas (hh:mm:ss)                              |
+| `LocalTime`              | Zwraca aktualny znacznik czasu                               |
+| `TimeZone`               | Strefa czasowa                                               |
+| `UnixTime`               | Zwraca aktualny uniksowy znacznik czasu                      |
+| `FirmwareVersion`        | Wersja oprogramowania Gate                                   |
+| `UseCloud`               | Określa czy GATE łączy się do chmury                         |
+| `CloudConnection`        | Określa status połączenia GATE z chmurą                      |
+| `NTPTimeout`             | Czas oczekiwania na odpowiedź z serwera NTP                  |
+| `UseNTP`                 | Określa czy GATE używa NTP                                   |
+| `PrimaryDNS`             | Preferowany serwer DNS                                       |
+| `SecondaryDNS`           | Alternatywny serwer DNS                                      |
+| `TelnetLogLevel`         | Określa poziom logowania                                     |
+| `TelnetBusLogLevel`      | Określa poziom logowania Modbus                              |
+| `ModbusMasterFrameSpace` | Określa dodatkową przerwę pomiędzy ramkami Modbus wyrażoną w znakach |
+| `OverloadDetection`      | Określa, czy Gate powinien zgłaszać przeciążenie procesora używają czerwonej diody |
+| `ResetReason`            | Określna przyczynę restartu urządzenia:<br />0 - włączenie zasilania<br />2 - przeładowanie konfiguracji<br />3 - wyjątek systemowy |
+
+**METODY**
+
+| Nazwa                     | Opis                                       |
+| ------------------------- | ------------------------------------------ |
+| `SetDateTime`             | Ustawia datę i czas                        |
+| `SetClientReportInterval` | Ustawia okres raportowania o zmianach cech |
+| `SetPrimaryDNS`           | Ustawia cechę PrimaryDNS                   |
+| `SetSecondaryDNS`         | Ustawia cechę SecondaryDNS                 |
+| `SetTelnetLogLevel`       | Określa poziom logowania                   |
+| `SetTelnetBusLogLevel`    | Określa poziom logowania Modbus            |
+
+**ZDARZENIA** 
+
+| Nazwa    | Opis                                                         |
+| -------- | ------------------------------------------------------------ |
+| `OnInit` | Zdarzenie wywoływane jednorazowo w momencie inicjalizacji urządzenia |
+
+###### Obiekt ModbusRTU
+
+> Opisany obiekt wirtualny jest dostępny dla **GRENTON GATE MODBUS MASTER, DIN, Eth (INT-201 - E-01)** posiadający **firmware 1.4.1-2334 lub wyższy!**
+
+**CECHY**
+
+| Nazwa                 | Opis                                                         |
+| --------------------- | :----------------------------------------------------------- |
+| `TransmissionSpeed`   | Prędkość transmisji                                          |
+| `Parity`              | Bit parzystości:<br/> 0 - None<br/> 1 - Odd<br/> 2 - Even    |
+| `StopBits`            | Bity stopu:<br/> 0 - 1 bit stopu<br/> 1 - 1.5 bitu stopu<br/> 2 - 2 bity stopu |
+| `DeviceAddress`       | Adres urządzenia Modbus                                      |
+| `ResponseTimeout`     | Czas na odpowiedź na ramkę w krokach 25ms                    |
+| `RefreshPeriod`       | Minimalny okres odświeżania w krokach 5ms. Wartość 0 wyłącza automatyczne odświeżanie |
+| `RegisterAddress`     | Adres obsługiwanego rejestru                                 |
+| `RegisterType`        | Typ rejestru Modbus:<br />0 - wyjścia dwustanowe (coils) - funkcja Modbus: 5 (zapis pojedynczego wyjścia), 15 (zapis wielu wyjść) lub 1 (odczyt stanu wyjść)<br />1 - wejścia dwustanowe - funkcja Modbus: 2 <br />2 - rejestry pamiętające - funkcja Modbus: 6 (zapis pojedynczego rejestru), 16 (zapis wielu rejestrów) lub 3 (odczyt rejestrów)<br />3 - rejestry wejściowe - funkcja Modbus: 4 |
+| `AlwaysWriteMultiple` | Zawsze używaj funkcji 15 lub 16 do zapisu wartości           |
+| `InputOutputCount`    | Określa liczbę dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu |
+| `DataType`            | Typ wartości:<br />0 - Liczba całkowita, stałoprzecinkowa lub pole bitowe bez bitu znaku<br />1 - Liczba całkowita, stałoprzecinkowa lub pole bitowe z bitem znaku<br />2 - Liczba zmiennoprzecinkowa |
+| `DataWidth`           | Szerokość danych (od 1 do 4 rejestrów 16 bitowych)           |
+| `Endianness`          | Kolejność bajtów:<br />0 - kolejność słów: Big Endian; kolejność bajtów w słowie: Big Endian (SwapBytesAndWords)<br />1 - kolejność słów: Little Endian; kolejność bajtów w słowie: Big Endian (SwapBytes)<br />2 - kolejność słów: Big Endian; kolejność bajtów w słowie: Little Endian (SwapWords)<br />3 - kolejność słów: Little Endian; kolejność bajtów w słowie: Little Endian (NoSwap) |
+| `BitFieldWidth`       | Liczba bitów pola bitowego. Suma `BitFieldWidth` i `BitFieldPosition` powinna być &lt;= `DataWidth`; 0 oznacza brak pola bitowego (pełna szerokość danych = `DataWidth`) |
+| `BitFieldPosition`    | Pozycja najmłodszego bitu pola bitowego. Suma `BitFieldWidth` i `BitFieldPosition` powinna być &lt;= `DataWidth`. |
+| `Divisor`             | Dzielnik                                                     |
+| `InitialValueAccess`  | Metoda pierwszego dostępu do wartości Value:<br/>0 - wartość początkowa Value jest odczytywana z urządzenia<br/>1 - wartość początkowa Value jest zapisywana do urządzenia |
+| `InitialValue`        | Określa wartość początkową                                   |
+| `Value`               | Zwraca ostatnio odczytaną wartość                            |
+| `RawValue`            | Nieprzeskalowana wartość rejestru                            |
+| `IsValueValid`        | Określa, czy wartość jest zgodna ze stanem obiektu           |
+| `ErrorCode`           | Kod błędu:<br />1 – niedozwolona funkcja<br/>2 – niedozwolony numer rejestru<br/>3 – niedozwolona wartość danej<br/>4 – uszkodzenie w przyłączonym urządzeniu<br/>5 – potwierdzenie pozytywne<br/>6 – brak gotowości, komunikat usunięty<br/>7 – potwierdzenie negatywne<br />8 – błąd parzystości pamięci<br/>10 - ścieżka bramy niedostępna<br />11 - brak odpowiedzi urządzenia docelowego<br />0 - poprawny odczyt/zapis rejestru<br/>-2 - przekroczenie czasu odpowiedzi<br/>-3 - błąd ramki (problem ze zdekodowaniem odpowiedzi)<br />-4 - nieoczekiwany rozmiar odpowiedzi<br/>-5 - nieoczekiwany kod odpowiedzi<br />-6 - nieprawidłowy stan obiektu<br />-7 - błąd połączenia |
+
+**METODY**
+
+| Nazwa                    | Opis                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| `SetTransmissionSpeed`   | Ustawia prędkość transmisji                                  |
+| `SetParity`              | Ustawia sprawdzanie parzystości                              |
+| `SetStopBits`            | Ustawia liczbę bitów stopu                                   |
+| `SetDeviceAddress`       | Ustawia adres urządzenia Modbus                              |
+| `SetResponseTimeout`     | Ustawia czas przekroczenia odpowiedzi w krokach 25ms         |
+| `SetRefreshPeriod`       | Ustawia okres odświeżania w krokach 5ms - wartość 0 wyłącza automatyczne odświeżanie |
+| `SetRegisterAddress`     | Ustawia adres obsługiwanego rejestru                         |
+| `SetRegisterType`        | Ustawia typ rejestru Modbus                                  |
+| `SetAlwaysWriteMultiple` | Zawsze używaj funkcji 15 lub 16 do zapisu wartości           |
+| `SetInputOutputCount`    | Ustawia liczbę dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu |
+| `SetDataType`            | Ustawia typ zmiennej                                         |
+| `SetDataWidth`           | Ustawia szerokość danych                                     |
+| `SetEndianness`          | Ustawia typ kolejności bajtów                                |
+| `SetBitFieldWidth`       | Ustawia liczbę bitów pola - 0 oznacza brak pola bitowego (pełna szerokość danych `DataWidth`) |
+| `SetBitFieldPosition`    | Ustawia pozycję najmłodszego bitu pola                       |
+| `SetDivisor`             | Ustawia dzielnik                                             |
+| `ReadValue`              | Rozpoczyna odczyt wartości z urządzenia - czeka na zakończenie odczytu w przypadku braku `OnValueRead` |
+| `WriteValue`             | Zapisuje nową wartość do urządzenia                          |
+
+**ZDARZENIA**
+
+| Nazwa            | Opis                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| `OnValueChange`  | Zdarzenie wywoływane w przypadku zmiany wartości cechy Value przez Modbus |
+| `OnValueRead`    | Zdarzenie wywoływane po zakończeniu odczytu rozpoczętego przez metodę `ReadValue` |
+| `OnValueWritten` | Zdarzenie wywołane po zakończeniu zapisu rozpoczętego przez metodę `WriteValue` |
+| `OnError`        | Zdarzenie wywoływane gdy urządzenie zgłasza błąd             |
+
+###### Obiekt ModbusSlaveConfigRTU
+
+> Opisany obiekt wirtualny jest dostępny dla **GRENTON GATE MODBUS MASTER, DIN, Eth (INT-201 - E-01)** posiadający **firmware 1.4.1-2334 lub wyższy!**
+
+**CECHY**
+
+| Nazwa               | Opis                                                         |
+| ------------------- | :----------------------------------------------------------- |
+| `TransmissionSpeed` | Prędkość transmisji                                          |
+| `Parity`            | Bit parzystości:<br/> 0 - None<br/> 1 - Odd<br/> 2 - Even    |
+| `StopBits`          | Bity stopu:<br/> 0 - 1 bit stopu<br/> 1 - 1.5 bitu stopu<br/> 2 - 2 bity stopu |
+
+###### Obiekt ModbusSlaveRTU
+
+> Opisany obiekt wirtualny jest dostępny dla **GRENTON GATE MODBUS MASTER, DIN, Eth (INT-201 - E-01)** posiadający **firmware 1.4.1-2334 lub wyższy!**
+
+**CECHY**
+
+| Nazwa             | Opis                                                         |
+| ----------------- | :----------------------------------------------------------- |
+| `DeviceAddress`   | Adres urządzenia Modbus                                      |
+| `RegisterAddress` | Adres obsługiwanego rejestru                                 |
+| `RegisterType`    | Typ rejestru Modbus:<br />0 - wyjścia dwustanowe (coils) - funkcja Modbus: 5 (zapis pojedynczego wyjścia), 15 (zapis wielu wyjść) lub 1 (odczyt stanu wyjść)<br />1 - wejścia dwustanowe - funkcja Modbus: 2 <br />2 - rejestry pamiętające - funkcja Modbus: 6 (zapis pojedynczego rejestru), 16 (zapis wielu rejestrów) lub 3 (odczyt rejestrów)<br />3 - rejestry wejściowe - funkcja Modbus: 4 |
+| `DataType`        | Typ wartości:<br />0 - Liczba całkowita, stałoprzecinkowa lub pole bitowe bez bitu znaku<br />1 - Liczba całkowita, stałoprzecinkowa lub pole bitowe z bitem znaku<br />2 - Liczba zmiennoprzecinkowa |
+| `DataWidth`       | Szerokość danych (od 1 do 4 rejestrów 16 bitowych)           |
+| `Endianness`      | Kolejność bajtów:<br />0 - kolejność słów: Big Endian; kolejność bajtów w słowie: Big Endian (SwapBytesAndWords)<br />1 - kolejność słów: Little Endian; kolejność bajtów w słowie: Big Endian (SwapBytes)<br />2 - kolejność słów: Big Endian; kolejność bajtów w słowie: Little Endian (SwapWords)<br />3 - kolejność słów: Little Endian; kolejność bajtów w słowie: Little Endian (NoSwap) |
+| `InitialValue`    | Określa wartość początkową                                   |
+| `Value`           | Wartość rejestru                                             |
+| `RawValue`        | Nieprzeskalowana wartość rejestru                            |
+
+**METODY**
+
+| Nazwa      | Opis                     |
+| ---------- | ------------------------ |
+| `SetValue` | Ustawia wartość rejestru |
+
+**ZDARZENIA**
+
+| Nazwa           | Opis                                                         |
+| --------------- | ------------------------------------------------------------ |
+| `OnValueChange` | Zdarzenie wywoływane w przypadku zmiany wartości cechy Value przez Modbus |
+
+###### Obiekt ModbusClient
+
+> Opisany obiekt wirtualny jest dostępny dla **GRENTON GATE MODBUS MASTER, DIN, Eth (INT-201 - E-01)** posiadający **firmware 1.4.1-2334 lub wyższy!**
+
+**CECHY**
+
+| Nazwa                 | Opis                                                         |
+| --------------------- | :----------------------------------------------------------- |
+| `SocketAddress`       | Adres IP urządzenia                                          |
+| `DeviceAddress`       | Adres urządzenia  Modbus                                     |
+| `ResponseTimeout`     | Czas na odpowiedź w krokach 25ms                             |
+| `RefreshPeriod`       | Minimalny okres odświeżania w krokach 5ms. Wartość 0 wyłącza automatyczne odświeżanie |
+| `RegisterAddress`     | Adres obsługiwanego rejestru                                 |
+| `RegisterType`        | Typ rejestru Modbus:<br />0 - wyjścia dwustanowe (coils) - funkcja Modbus: 5 (zapis pojedynczego wyjścia), 15 (zapis wielu wyjść) lub 1 (odczyt stanu wyjść)<br />1 - wejścia dwustanowe - funkcja Modbus: 2 <br />2 - rejestry pamiętające - funkcja Modbus: 6 (zapis pojedynczego rejestru), 16 (zapis wielu rejestrów) lub 3 (odczyt rejestrów)<br />3 - rejestry wejściowe - funkcja Modbus: 4 |
+| `AlwaysWriteMultiple` | Zawsze używaj funkcji 15 lub 16 do zapisu wartości           |
+| `InputOutputCount`    | Określa liczbę dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu |
+| `DataType`            | Typ wartości:<br />0 - Liczba całkowita, stałoprzecinkowa lub pole bitowe bez bitu znaku<br />1 - Liczba całkowita, stałoprzecinkowa lub pole bitowe z bitem znaku<br />2 - Liczba zmiennoprzecinkowa |
+| `DataWidth`           | Szerokość danych (od 1 do 4 rejestrów 16 bitowych)           |
+| `Endianness`          | Kolejność bajtów:<br />0 - kolejność słów: Big Endian; kolejność bajtów w słowie: Big Endian (SwapBytesAndWords)<br />1 - kolejność słów: Little Endian; kolejność bajtów w słowie: Big Endian (SwapBytes)<br />2 - kolejność słów: Big Endian; kolejność bajtów w słowie: Little Endian (SwapWords)<br />3 - kolejność słów: Little Endian; kolejność bajtów w słowie: Little Endian (NoSwap) |
+| `BitFieldWidth`       | Liczba bitów pola bitowego. Suma `BitFieldWidth` i `BitFieldPosition` powinna być &lt;= `DataWidth`; 0 oznacza brak pola bitowego (pełna szerokość danych = `DataWidth`) |
+| `BitFieldPosition`    | Pozycja najmłodszego bitu pola bitowego. Suma `BitFieldWidth` i `BitFieldPosition` powinna być &lt;= `DataWidth`. |
+| `Divisor`             | Dzielnik                                                     |
+| `InitialValueAccess`  | Metoda pierwszego dostępu do wartości Value:<br/>0 - wartość początkowa Value jest odczytywana z urządzenia<br/>1 - wartość początkowa Value jest zapisywana do urządzenia |
+| `InitialValue`        | Określa wartość początkową                                   |
+| `Value`               | Zwraca ostatnio odczytaną wartość                            |
+| `RawValue`            | Nieprzeskalowana wartość rejestru                            |
+| `IsValueValid`        | Określa, czy wartość jest zgodna ze stanem obiektu           |
+| `ErrorCode`           | Kod błędu:<br />1 – niedozwolona funkcja<br/>2 – niedozwolony numer rejestru<br/>3 – niedozwolona wartość danej<br/>4 – uszkodzenie w przyłączonym urządzeniu<br/>5 – potwierdzenie pozytywne<br/>6 – brak gotowości, komunikat usunięty<br/>7 – potwierdzenie negatywne<br />8 – błąd parzystości pamięci<br/>10 - ścieżka bramy niedostępna<br />11 - brak odpowiedzi urządzenia docelowego<br />0 - poprawny odczyt/zapis rejestru<br/>-2 - przekroczenie czasu odpowiedzi<br/>-3 - błąd ramki (problem ze zdekodowaniem odpowiedzi)<br />-4 - nieoczekiwany rozmiar odpowiedzi<br/>-5 - nieoczekiwany kod odpowiedzi<br />-6 - nieprawidłowy stan obiektu<br />-7 - błąd połączenia |
+
+**METODY**
+
+| Nazwa                    | Opis                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| `SetDeviceAddress`       | Ustawia adres urządzenia Modbus                              |
+| `SetResponseTimeout`     | Ustawia czas przekroczenia odpowiedzi w krokach 25ms         |
+| `SetRefreshPeriod`       | Ustawia okres odświeżania w krokach 5ms - wartość 0 wyłącza automatyczne odświeżanie |
+| `SetRegisterAddress`     | Ustawia adres obsługiwanego rejestru                         |
+| `SetRegisterType`        | Ustawia typ rejestru Modbus                                  |
+| `SetAlwaysWriteMultiple` | Zawsze używaj funkcji 15 lub 16 do zapisu wartości           |
+| `SetInputOutputCount`    | Ustawia liczbę dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu |
+| `SetDataType`            | Ustawia typ zmiennej                                         |
+| `SetDataWidth`           | Ustawia szerokość danych                                     |
+| `SetEndianness`          | Ustawia typ kolejności bajtów                                |
+| `SetBitFieldWidth`       | Ustawia liczbę bitów pola - 0 oznacza brak pola bitowego (pełna szerokość danych `DataWidth`) |
+| `SetBitFieldPosition`    | Ustawia pozycję najmłodszego bitu pola                       |
+| `SetDivisor`             | Ustawia dzielnik                                             |
+| `ReadValue`              | Rozpoczyna odczyt wartości z urządzenia - czeka na zakończenie odczytu w przypadku braku `OnValueRead` |
+| `WriteValue`             | Zapisuje nową wartość do urządzenia                          |
+
+**ZDARZENIA**
+
+| Nazwa            | Opis                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| `OnValueChange`  | Zdarzenie wywoływane w przypadku zmiany wartości cechy Value przez Modbus |
+| `OnValueRead`    | Zdarzenie wywoływane po zakończeniu odczytu rozpoczętego przez metodę `ReadValue` |
+| `OnValueWritten` | Zdarzenie wywołane po zakończeniu zapisu rozpoczętego przez metodę `WriteValue` |
+| `OnError`        | Zdarzenie wywoływane gdy serwer zgłasza błąd                 |
+
+###### Obiekt ModbusServer
+
+> Opisany obiekt wirtualny jest dostępny dla **GRENTON GATE MODBUS MASTER, DIN, Eth (INT-201 - E-01)** posiadający **firmware 1.4.1-2334 lub wyższy!**
+
+**CECHY**
+
+| Nazwa             | Opis                                                         |
+| ----------------- | :----------------------------------------------------------- |
+| `Port`            | Port nasłuchiwania serwera                                   |
+| `DeviceAddress`   | Adres urządzenia Modbus                                      |
+| `RegisterAddress` | Adres obsługiwanego rejestru                                 |
+| `RegisterType`    | Typ rejestru Modbus:<br />0 - wyjścia dwustanowe (coils) - funkcja Modbus: 5 (zapis pojedynczego wyjścia), 15 (zapis wielu wyjść) lub 1 (odczyt stanu wyjść)<br />1 - wejścia dwustanowe - funkcja Modbus: 2 <br />2 - rejestry pamiętające - funkcja Modbus: 6 (zapis pojedynczego rejestru), 16 (zapis wielu rejestrów) lub 3 (odczyt rejestrów)<br />3 - rejestry wejściowe - funkcja Modbus: 4 |
+| `DataType`        | Typ wartości:<br />0 - Liczba całkowita, stałoprzecinkowa lub pole bitowe bez bitu znaku<br />1 - Liczba całkowita, stałoprzecinkowa lub pole bitowe z bitem znaku<br />2 - Liczba zmiennoprzecinkowa |
+| `DataWidth`       | Szerokość danych (od 1 do 4 rejestrów 16 bitowych)           |
+| `Endianness`      | Kolejność bajtów:<br />0 - kolejność słów: Big Endian; kolejność bajtów w słowie: Big Endian (SwapBytesAndWords)<br />1 - kolejność słów: Little Endian; kolejność bajtów w słowie: Big Endian (SwapBytes)<br />2 - kolejność słów: Big Endian; kolejność bajtów w słowie: Little Endian (SwapWords)<br />3 - kolejność słów: Little Endian; kolejność bajtów w słowie: Little Endian (NoSwap) |
+| `InitialValue`    | Określa wartość początkową                                   |
+| `Value`           | Wartość rejestru                                             |
+| `RawValue`        | Nieprzeskalowana wartość rejestru                            |
+
+**METODY**
+
+| Nazwa      | Opis                     |
+| ---------- | ------------------------ |
+| `SetValue` | Ustawia wartość rejestru |
+
+**ZDARZENIA**
+
+| Nazwa           | Opis                                                         |
+| --------------- | ------------------------------------------------------------ |
+| `OnValueChange` | Zdarzenie wywoływane w przypadku zmiany wartości cechy `Value` przez Modbus |
+
+###### Obiekt Modbus
+
+> Obiekt wirtualny `Modbus` został wycofany od wersji **firmware 1.4.1-2334**. W celu zachowania kompatybilności możliwe jest używanie obiektu jedynie w wcześniej utworzonych projektach.
+
+**CECHY**
+
+| Nazwa               | Opis                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| `DeviceAddress`     | Adres urządzenia Modbus typu Slave                           |
+| `AccessRights`      | Tryb pracy: *read* (0 – odczyt); *read/write* (1 - odczyt/zapis) |
+| `RegisterAddress`   | Adres obsługiwanego rejestru                                 |
+| `TransmissionSpeed` | Prędkość transmisji                                          |
+| `ValueType`         | Typ zmiennej (1 – *number*; 2 – *float*; 3 – *bit*)          |
+| `BitPosition`       | Pozycja bitu (dotyczy dostępu bitowego do 16-bitowych rejestrów) |
+| `BitCount`          | Liczba bitów rejestru do odczytania                          |
+| `RefreshInterval`   | Czas odświeżania                                             |
+| `ResponseTimeout`   | Czas na odpowiedź                                            |
+| `Divisor`           | Dzielnik                                                     |
+| `Endianness`        | Kolejność bajtów i słów: <br />`No swap` (0) – bez zamiany; <br />`Swap bytes and words` (1) - zamiana kolejności bajtów i słów; <br />`Swap bytes` (2) - zamiana kolejności bajtów w obrębie każdego ze słów; <br />`Swap words` (3) - zamiana słów) |
+| `RegisterType`      | Typ rejestru Modbus: <br />`0` – wejścia/wyjścia bitowe, <br />`1` – wejścia dwustanowe, <br />`2` – rejestry pamiętające, <br />`3` – rejestry wejściowe |
+| `ErrorCode`         | Kod błędu: <br />`-3` - błąd ramki; <br />`-2` - przekroczenie czasu odpowiedzi; <br />`-1` - nieaktualna wartość ostatniego odczytanego rejestru; <br />`0` – poprawny odczyt/zapis rejestru; <br />`1` - niedozwolona funkcja; <br />`2` - niedozwolony numer rejestru; <br />`3` - niedozwolona wartość danej; <br />`4` - uszkodzenie w przyłączonym urządzeniu; <br />`5` - potwierdzenie pozytywne; <br />`6` - brak gotowości/komunikat usunięty;<br />`7`- potwierdzenie negatywne; <br />`8` - błąd parzystości pamięci |
+| `Value`             | Wartość odczytu / zapisu                                     |
+| `RegisterValue`     | Nieprzeskalowana wartość rejestru                            |
+| `StopBits`          | Bity stopu:<br/> `0` - 1 bit stopu<br/> `1` - 1.5 bitu stopu<br/> `2` - 2 bity stopu |
+| `Parity`            | Bit parzystości:<br/> `0` - None<br/> `1` - Odd<br/> `2` - Even |
+
+**METODY**
+
+| Nazwa                  | Opis                                        |
+| ---------------------- | ------------------------------------------- |
+| `SetDeviceAddress`     | Ustawia adres urządzenia Modbus typu Slave  |
+| `SetAccessRights`      | Ustawia tryb pracy: odczyt lub odczyt/zapis |
+| `SetRegisterAddress`   | Ustawia adres obsługiwanego rejestru        |
+| `SetTransmissionSpeed` | Ustawia prędkość transmisji                 |
+| `SetValueType`         | Ustawia typ zmiennej                        |
+| `SetBitPosition`       | Ustawia pozycję bitu                        |
+| `SetBitCount`          | Ustawia liczbę bitów rejestru do odczytania |
+| `SetRefreshInterval`   | Ustawia czas odświeżania                    |
+| `SetResponseTimeout`   | Ustawia czas oczekiwania na odpowiedź       |
+| `SetDivisor`           | Ustawia dzielnik                            |
+| `SetEndianness`        | Ustawia typ kolejności bajtów               |
+| `SetRegisterType`      | Ustawia typ rejestru Modbus                 |
+| `SetValue`             | Ustawia wartość odczytu / zapisu            |
+| `SetStopBits`          | Ustawia liczbę bitów stopu                  |
+| `SetParity`            | Ustawia sprawdzanie parzystości             |
+
+**ZDARZENIA**
+
+| Nazwa      | Opis                                                         |
+| ---------- | ------------------------------------------------------------ |
+| `OnChange` | Zdarzenie wywoływane przy zmianie stanu (niezależnie od wartości) |
+| `OnError`  | Zdarzenie wywołane, gdy urządzenie slave zgłasza błąd        |
+
+###### Obiekt ModbusValue
+
+> Obiekt wirtualny `ModbusValue` został wycofany od wersji **firmware 1.4.1-2334**. W celu zachowania kompatybilności możliwe jest używanie obiektu jedynie w wcześniej utworzonych projektach.
+
+**CECHY**
+
+| Nazwa                | Opis                                                         |
+| -------------------- | :----------------------------------------------------------- |
+| `TransmissionSpeed`  | Prędkość transmisji                                          |
+| `Parity`             | Bit parzystości:<br/> `0` - None<br/> `1` - Odd<br/> `2` - Even |
+| `StopBits`           | Bity stopu:<br/> `0` - 1 bit stopu<br/> `1` - 1.5 bitu stopu<br/> `2` - 2 bity stopu |
+| `DeviceAddress`      | Adres urządzenia Slave Modbus                                |
+| `ResponseTimeout`    | Czas na odpowiedź w krokach 25ms                             |
+| `RefreshPeriod`      | Minimalny okres odświeżania w krokach 5ms. Wartość 0 wyłącza automatyczne odświeżanie |
+| `RegisterAddress`    | Adres obsługiwanego rejestru                                 |
+| `RegisterType`       | Typ rejestru Modbus (0 – wejścia/wyjścia bitowe, 1 – wejścia dwustanowe, 2 – rejestry pamiętające, 3 – rejestry wejściowe) |
+| `InputOutputCount`   | Określa liczbę dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu |
+| `DataType`           | Typ wartości:<br />`0` - Liczba całkowita, stałoprzecinkowa lub pole bitowe bez bitu znaku<br />`1` - Liczba całkowita, stałoprzecinkowa lub pole bitowe z bitem znaku<br />`2` - Liczba zmiennoprzecinkowa |
+| `DataWidth`          | Szerokość danych (od 1 do 4 rejestrów 16 bitowych)           |
+| `Endianness`         | Kolejność bajtów:<br />`0` - kolejność słów: Big Endian; kolejność bajtów w słowie: Big Endian<br />`1` - kolejność słów: Little Endian; kolejność bajtów w słowie: Big Endian<br />`2` - kolejność słów: Big Endian; kolejność bajtów w słowie: Little Endian<br />`3` - kolejność słów: Little Endian; kolejność bajtów w słowie: Little Endian |
+| `BitFieldWidth`      | Liczba bitów pola bitowego. Suma `BitFieldWidth` i `BitFieldPosition` powinna być &lt;= `DataWidth`; 0 oznacza brak pola bitowego (pełna szerokość danych = `DataWidth`) |
+| `BitFieldPosition`   | Pozycja najmłodszego bitu pola bitowego. Suma `BitFieldWidth` i `BitFieldPosition` powinna być &lt;= `DataWidth`. |
+| `Divisor`            | Dzielnik (skala) wartości                                    |
+| `InitialValueAccess` | Metoda pierwszego dostępu do wartości Value:<br/>`0` - wartość początkowa Value jest odczytywana z urządzenia<br/>`1` - wartość początkowa Value jest zapisywana do urządzenia |
+| `Value`              | Zwraca ostatnio odczytaną wartość oraz określa wartość początkową |
+| `RawValue`           | Nieprzeskalowana wartość rejestru                            |
+| `IsValueValid`       | Określa, czy wartość jest zgodna ze stanem obiektu           |
+| `ErrorCode`          | Kod błędu:<br />`1` – niedozwolona funkcja<br/>`2` – niedozwolony numer rejestru<br/>`3` – niedozwolona wartość danej<br/>`4` – uszkodzenie w przyłączonym urządzeniu<br/>`5` – potwierdzenie pozytywne<br/>`6` – brak gotowości, komunikat usunięty<br/>`7` – potwierdzenie negatywne<br />`8` – błąd parzystości pamięci<br/>`0` - poprawny odczyt/zapis rejestru<br/>`-2` - przekroczenie czasu odpowiedzi<br/>`-3` - błąd ramki (problem ze zdekodowaniem odpowiedzi)<br />`-4` - nieoczekiwany rozmiar odpowiedzi<br/>`-5` - nieoczekiwany kod odpowiedzi |
+
+**METODY**
+
+| Nazwa                  | Opis                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| `SetTransmissionSpeed` | Ustawia prędkość transmisji                                  |
+| `SetParity`            | Ustawia sprawdzanie parzystości                              |
+| `SetStopBits`          | Ustawia liczbę bitów stopu                                   |
+| `SetDeviceAddress`     | Ustawia adres urządzenia Modbus typu Slave                   |
+| `SetResponseTimeout`   | Ustawia czas przekroczenia odpowiedzi w krokach 25ms         |
+| `SetRefreshPeriod`     | Ustawia okres odświeżania w krokach 5ms - wartość 0 wyłącza automatyczne odświeżanie |
+| `SetRegisterAddress`   | Ustawia adres obsługiwanego rejestru                         |
+| `SetRegisterType`      | Ustawia typ rejestru Modbus                                  |
+| `SetInputOutputCount`  | Ustawia liczbę dyskretnych wejść / wyjść podlegających operacji odczytu / zapisu |
+| `SetDataType`          | Ustawia typ zmiennej                                         |
+| `SetDataWidth`         | Ustawia szerokość danych                                     |
+| `SetEndianness`        | Ustawia typ kolejności bajtów                                |
+| `SetBitFieldWidth`     | Ustawia liczbę bitów pola - 0 oznacza brak pola bitowego (pełna szerokość danych `DataWidth`) |
+| `SetBitFieldPosition`  | Ustawia pozycję najmłodszego bitu pola                       |
+| `SetDivisor`           | Ustawia dzielnik                                             |
+| `ReadValue`            | Rozpoczyna odczyt wartości z urządzenia - czeka na zakończenie odczytu w przypadku braku OnValueRead |
+| `WriteValue`           | Zapisuje nową wartość do urządzenia                          |
+
+**ZDARZENIA**
+
+| Nazwa           | Opis                                                         |
+| --------------- | ------------------------------------------------------------ |
+| `OnValueChange` | Zdarzenie wywoływane w przypadku zmiany wartości cechy Value lub zmiany parametrów obiektu |
+| `OnValueRead`   | Zdarzenie wywoływane po zakończeniu odczytu rozpoczętego przez metodę ReadValue |
+| `OnError`       | Zdarzenie wywoływane gdy urządzenie slave zgłasza błąd       |</small></div><nav class="navbar navbar-light bg-light gfooter"><div class="container-fluid"><span class="navbar-text"><small>&copy; 2023 Grenton Sp. z o. o.</small></span></div></nav></main></body></html>
