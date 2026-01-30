@@ -39,6 +39,10 @@ table {
   font-size: .875em;
   line-height: 1.45!important;
 }
+
+.table-search {
+  max-width: 300px;
+}
 .lh-sm{
   line-height: 1.25!important;
 }
